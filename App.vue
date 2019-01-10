@@ -3,20 +3,32 @@
 </template>
 
 <script>
+import Vue from "vue-native-core";
+import { VueNativeBase } from "native-base";
+
+// registering all native-base components to the global scope of the Vue
+Vue.use(VueNativeBase);
+
 import { StackNavigator } from "vue-native-router";
 import Splash from './Splash.vue'
+import Speedometer from './Speedometer.vue'
+import Music from "./Music.vue"
 import Main from './Main.vue'
+import Profile from './Profile.vue'
 const AppNavigation = StackNavigator(
   {
-    Splash: Splash,
-    Main: Main,
+    splash: Splash,
+    speedometer: Speedometer,
+    music: Music,
+    profile: Profile,
+    main: Main
   },
   {
-    initialRouteName: 'Splash',
+    initialRouteName: 'music',
   }
 );
 export default {
-    components: { AppNavigation }
+  components: { AppNavigation }
 }
 </script>
 

@@ -1,45 +1,26 @@
 <template>
   <view class="container">
-    <text>Location:</text>
-    <text v-if="location.coords">{{location.coords.latitude}}</text>
-    <text v-if="location.coords">{{location.coords.longitude}}</text>
-    <text v-if="location.coords">{{location.coords.speed}}</text>
-
-    <touchable-opacity :on-press="getLocation">
-      <text>get location</text>
+    <text class="header">flô:</text>
+    <text class="text-color-primary">Email:</text>
+    <text-input class="text-input"/>
+    <text class="text-color-primary">Password:</text>
+    <text-input class="text-input"/>
+    <touchable-opacity :on-press="navMusic">
+      <text class="text-color-primary">Log In</text>
     </touchable-opacity>
   </view>
 </template>
 
 <script>
-import { Constants, Location, Permissions } from "expo";
-
 export default {
-  beforeMount() {
-    window.setInterval(this.getLocation, 500)
-  },
-  data() {
-    return {
-      location: {},
-      errorMessage: ""
-    };
+  props: {
+    navigation: {
+      type: Object
+    }
   },
   methods: {
-    getLocation: function() {
-      Permissions.askAsync(Permissions.LOCATION)
-        .then(status => {
-          if (status !== "granted") {
-            errorMessage = "Permission to access location was denied";
-          }
-          Location.getCurrentPositionAsync({ accuracy: 6 }).then(location1 => {
-            location = location1;
-            this.location = location;
-            console.log(location.coords)
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    navMusic: function() {
+      this.navigation.navigate("main");
     }
   }
 };
@@ -47,12 +28,23 @@ export default {
 
 <style>
 .container {
-  background-color: white;
+  background-color: black;
   align-items: center;
   justify-content: center;
   flex: 1;
 }
 .text-color-primary {
-  color: blue;
+  color: cyan;
+}
+.text-input {
+  color: white;
+  background-color: rgb(66, 66, 66);
+  border-color: white;
+  border-width: 1;
+  width: 225;
+}
+.header {
+  color: cyan;
+  font-size: 75;
 }
 </style>

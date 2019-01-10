@@ -1,93 +1,81 @@
 <template>
   <view class="container">
-    <text>Location:</text>
-    <text v-if="location.coords">Speed: {{speed}}</text>
-    <text v-if="location.coords">Lat1: {{lat1}}</text>
-    <text v-if="location.coords">Lon1: {{lon1}}</text>
-    <text v-if="location.coords">Time1: {{time1}}</text>
-    <text v-if="location.coords">Lat2: {{lat2}}</text>
-    <text v-if="location.coords">Lon2: {{lon2}}</text>
-    <text v-if="location.coords">Time2: {{time2}}</text>
-    <text v-if="location.coords">LatDelta: {{latDelta}}</text>
-    <text v-if="location.coords">LonDelta: {{lonDelta}}</text>
-    <text v-if="location.coords">TimeDelta: {{timeDelta}}</text>
-
-    <touchable-opacity :on-press="getLocation">
-      <text>get location</text>
+    <view class="speedometer">
+      <text class="speedometer-text">{{speed}}</text>
+    </view>
+    <touchable-opacity :on-press="speed0">
+      <text class="text-color-primary">Speed 0</text>
     </touchable-opacity>
+    <touchable-opacity :on-press="speed1">
+      <text class="text-color-primary">Speed 1</text>
+    </touchable-opacity>
+    <touchable-opacity :on-press="speed2">
+      <text class="text-color-primary">Speed 2</text>
+    </touchable-opacity>
+    <view class="nav">
+      <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
+      <text class="nav-text" :on-press="navMusic">Go to your Music</text>
+    </view>
   </view>
 </template>
 
 <script>
-import { Constants, Location, Permissions } from "expo";
+import chopin from "./assets/audio-chopin.mp3";
+import sexInAPan from "./assets/audio-sexInAPan.mp3";
+
+const soundObject = new Expo.Audio.Sound();
 
 export default {
-  beforeMount() {
-    window.setInterval(this.getLocation, 200);
+  props: {
+    navigation: {
+      type: Object
+    }
   },
   data() {
     return {
-      location: {},
-      errorMessage: "",
-      speed: null,
-      lat1: null,
-      lon1: null,
-      time1: null,
-      lat2: null,
-      lon2: null,
-      time2: null,
-      latDelta: null,
-      lonDelta: null,
-      timeDelta: null
+      speed: 0,
+      changes: 0,
+      slow: chopin,
+      fast: sexInAPan
     };
   },
+  watch: {
+    speed: function() {
+      this.changes = this.changes + 1;
+      this.playMusic();
+    }
+  },
   methods: {
-    getLocation: function() {
-      Permissions.askAsync(Permissions.LOCATION)
-        .then(status => {
-          if (status !== "granted") {
-            errorMessage = "Permission to access location was denied";
-          }
-          Location.getCurrentPositionAsync({ accuracy: 6 }, obj => {
-            console.log(obj);
-          }).then(location1 => {
-            console.log(location1);
-            location = location1;
-            this.location = location;
-
-            if (this.lat1 == null) {
-              this.lat1 = location.coords.latitude;
-              this.lon1 = location.coords.longitude;
-              this.time1 = location.timestamp;
-            } else {
-              this.lat2 = this.lat1;
-              this.lon2 = this.lon1;
-              this.time2 = this.time1;
-
-              this.lat1 = location.coords.latitude;
-              this.lon1 = location.coords.longitude;
-              this.time1 = location.timestamp;
-            }
-            this.getChange()
-            console.log(location);
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    navProfile: function() {
+      this.navigation.navigate("profile");
     },
-    getChange: function() {
-      let timeDelta = this.time1 - this.time2;
-      let latDelta = this.lat1 - this.lat2;
-      let lonDelta = this.lon1 - this.lon2;
-
-      this.latDelta = Math.abs(latDelta);
-      this.lonDelta = Math.abs(lonDelta);
-      this.timeDelta = timeDelta;
-
-      let speed = (this.latDelta + this.lonDelta) / this.timeDelta;
-
-      this.speed = speed;
+    navMusic: function() {
+      this.navigation.navigate("music");
+    },
+    playMusic: async function() {
+      if (this.speed == 0) {
+        soundObject.pauseAsync();
+        soundObject.unloadAsync();
+      } else if (this.speed === 1) {
+        soundObject.pauseAsync();
+        soundObject.unloadAsync();
+        await soundObject.loadAsync(this.slow);
+        await soundObject.playAsync();
+      } else if (this.speed === 2) {
+        soundObject.pauseAsync();
+        soundObject.unloadAsync();
+        await soundObject.loadAsync(this.fast);
+        await soundObject.playAsync();
+      }
+    },
+    speed0: function() {
+      this.speed = 0;
+    },
+    speed1: function() {
+      this.speed = 1;
+    },
+    speed2: function() {
+      this.speed = 2;
     }
   }
 };
@@ -95,12 +83,36 @@ export default {
 
 <style>
 .container {
-  background-color: white;
+  background-color: black;
   align-items: center;
   justify-content: center;
   flex: 1;
 }
 .text-color-primary {
-  color: blue;
+  color: cyan;
+}
+
+.speedometer {
+  height: 200;
+  width: 200;
+  background-color: gray;
+  border-radius: 100;
+  justify-content: center;
+}
+
+.speedometer-text {
+  font-size: 75;
+  color: cyan;
+  margin: auto;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-text {
+  color: white;
+  padding: 20;
 }
 </style>
