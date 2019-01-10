@@ -1,5 +1,5 @@
 <template>
-  <app-navigation></app-navigation>
+  <app-navigation class=""></app-navigation>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ const AppNavigation = StackNavigator(
     Main: Main,
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'Splash',
   }
 );
 export default {
@@ -29,5 +29,9 @@ export default {
 }
 .text-color-primary {
   color: blue;
+}
+
+.nav {
+  background-color: blue
 }
 </style>
