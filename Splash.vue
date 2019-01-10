@@ -35,6 +35,7 @@ export default {
 }
 .text-color-primary {
   color: cyan;
+  font-size: 24;
 }
 .text-input {
   color: white;
@@ -45,6 +46,6 @@ export default {
 }
 .header {
   color: cyan;
-  font-size: 75;
+  font-size: 80;
 }
 </style>

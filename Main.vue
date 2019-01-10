@@ -1,8 +1,11 @@
 <template>
   <view class="container">
     <view class="speedometer">
-      <text class="speedometer-text">{{speed}}</text>
+      <text v-if="run" class="speedometer-text">{{speed}}</text>
     </view>
+
+    <text class="text-color-primary">playlist : {{zone}} </text>
+
     <touchable-opacity :on-press="speed0">
       <text class="text-color-primary">Speed 0</text>
     </touchable-opacity>
@@ -12,6 +15,13 @@
     <touchable-opacity :on-press="speed2">
       <text class="text-color-primary">Speed 2</text>
     </touchable-opacity>
+
+    <touchable-opacity :on-press="startRun" class="flo-button">
+      <text v-if="run" class="text-color-primary">run</text>
+      <text v-else class="text-color-primary">run</text>
+
+    </touchable-opacity>
+
     <view class="nav">
       <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
       <text class="nav-text" :on-press="navMusic">Go to your Music</text>
@@ -34,14 +44,14 @@ export default {
   data() {
     return {
       speed: 0,
-      changes: 0,
+      run: false,
+      zone: "calm",
       slow: chopin,
       fast: sexInAPan
     };
   },
   watch: {
     speed: function() {
-      this.changes = this.changes + 1;
       this.playMusic();
     }
   },
@@ -56,16 +66,19 @@ export default {
       if (this.speed == 0) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
+        this.zone = "calm"
       } else if (this.speed === 1) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.slow);
         await soundObject.playAsync();
+        this.zone = "moderate"
       } else if (this.speed === 2) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.fast);
         await soundObject.playAsync();
+        this.zone = "intense"
       }
     },
     speed0: function() {
@@ -76,6 +89,9 @@ export default {
     },
     speed2: function() {
       this.speed = 2;
+    },
+    startRun: function() {
+      this.run = !this.run
     }
   }
 };
@@ -90,13 +106,15 @@ export default {
 }
 .text-color-primary {
   color: cyan;
+  font-size: 24;
 }
 
 .speedometer {
   height: 200;
   width: 200;
-  background-color: gray;
+  background-color: rgb(43, 43, 43);
   border-radius: 100;
+  align-items: center;
   justify-content: center;
 }
 
@@ -114,5 +132,15 @@ export default {
 .nav-text {
   color: white;
   padding: 20;
+}
+
+.flo-button {
+  background-color: rgb(43, 43, 43);
+  width: 200;
+  height: 50;
+  border-radius: 50;
+    align-items: center;
+  justify-content: center;
+  /* font-size: 30; */
 }
 </style>

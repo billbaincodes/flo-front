@@ -15,16 +15,18 @@ import Speedometer from './Speedometer.vue'
 import Music from "./Music.vue"
 import Main from './Main.vue'
 import Profile from './Profile.vue'
+import AddSong from "./AddSong.vue"
 const AppNavigation = StackNavigator(
   {
     splash: Splash,
     speedometer: Speedometer,
     music: Music,
     profile: Profile,
-    main: Main
+    main: Main,
+    addsong: AddSong
   },
   {
-    initialRouteName: 'music',
+    initialRouteName: 'splash',
   }
 );
 export default {

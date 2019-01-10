@@ -3,9 +3,9 @@
     <nb-header class="hider"/>
     <nb-content>
       <nb-list>
-        <nb-list-item class="divider" itemDivider>
+        <nb-list-item class="divider" :on-press="navAdd" itemDivider>
           <nb-text class="divider-text">Slow</nb-text>
-          <nb-text class="divider-text">+</nb-text>
+          <nb-text class="divider-text" >+</nb-text>
         </nb-list-item>
         <nb-list-item class="divider">
           <nb-text>Walk Like an Egyptian - The Bangles</nb-text>
@@ -42,8 +42,8 @@ export default {
     }
   },
   methods: {
-    navMain: function() {
-      this.navigation.navigate("main");
+    navAdd: function() {
+      this.navigation.navigate("addsong");
     }
   }
 };
