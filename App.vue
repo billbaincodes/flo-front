@@ -16,6 +16,8 @@ import Music from "./Music.vue"
 import Main from './Main.vue'
 import Profile from './Profile.vue'
 import AddSong from "./AddSong.vue"
+import Grow from "./Grow.vue"
+
 const AppNavigation = StackNavigator(
   {
     splash: Splash,
@@ -23,10 +25,11 @@ const AppNavigation = StackNavigator(
     music: Music,
     profile: Profile,
     main: Main,
-    addsong: AddSong
+    addsong: AddSong,
+    grow: Grow
   },
   {
-    initialRouteName: 'splash',
+    initialRouteName: 'main',
   }
 );
 export default {
@@ -41,6 +44,7 @@ export default {
   justify-content: center;
   flex: 1;
 }
+
 .text-color-primary {
   color: blue;
 }

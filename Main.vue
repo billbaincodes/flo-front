@@ -1,10 +1,17 @@
 <template>
   <view class="container">
-    <view class="speedometer">
-      <text v-if="run" class="speedometer-text">{{speed}}</text>
-    </view>
+    <animated:view
+      class="speedometer"
+      :style="{
+        height: growth,
+        width: growth ,
+        borderRadius:growth,
+      }"
+    >
+      <text class="speedometer-text">{{speed}}</text>
+    </animated:view>
 
-    <text class="text-color-primary">playlist : {{zone}} </text>
+    <text class="text-color-primary">playlist : {{zone}}</text>
 
     <touchable-opacity :on-press="speed0">
       <text class="text-color-primary">Speed 0</text>
@@ -19,9 +26,7 @@
     <touchable-opacity :on-press="startRun" class="flo-button">
       <text v-if="run" class="text-color-primary">run</text>
       <text v-else class="text-color-primary">run</text>
-
     </touchable-opacity>
-
     <view class="nav">
       <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
       <text class="nav-text" :on-press="navMusic">Go to your Music</text>
@@ -30,6 +35,7 @@
 </template>
 
 <script>
+import { Animated, Easing } from "react-native";
 import chopin from "./assets/audio-chopin.mp3";
 import sexInAPan from "./assets/audio-sexInAPan.mp3";
 
@@ -43,12 +49,16 @@ export default {
   },
   data() {
     return {
+      growth: 0,
       speed: 0,
       run: false,
       zone: "calm",
       slow: chopin,
       fast: sexInAPan
     };
+  },
+  created: function() {
+    this.growth = new Animated.Value(0);
   },
   watch: {
     speed: function() {
@@ -66,19 +76,19 @@ export default {
       if (this.speed == 0) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
-        this.zone = "calm"
+        this.zone = "calm";
       } else if (this.speed === 1) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.slow);
         await soundObject.playAsync();
-        this.zone = "moderate"
+        this.zone = "moderate";
       } else if (this.speed === 2) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.fast);
         await soundObject.playAsync();
-        this.zone = "intense"
+        this.zone = "intense";
       }
     },
     speed0: function() {
@@ -91,7 +101,51 @@ export default {
       this.speed = 2;
     },
     startRun: function() {
-      this.run = !this.run
+      this.run = !this.run;
+
+      if (this.run === true) {
+        this.growth.setValue(0);
+
+        Animated.timing(this.growth, {
+          toValue: 200,
+          duration: 200,
+          easing: Easing.linear
+        }).start(() => {
+          // this.animateGrowth();
+        });
+      } else {
+        this.growth.setValue(200);
+
+        Animated.timing(this.growth, {
+          toValue: 0,
+          duration: 200,
+          easing: Easing.linear
+        }).start(() => {
+          // this.animateGrowth();
+        });
+      }
+    },
+    animateGrowth: function() {
+      this.growth.setValue(0);
+
+      Animated.timing(this.growth, {
+        toValue: 200,
+        duration: 200,
+        easing: Easing.linear
+      }).start(() => {
+        // this.animateGrowth();
+      });
+    },
+    animateShrink: function() {
+      this.growth.setValue(200);
+
+      Animated.timing(this.growth, {
+        toValue: 0,
+        duration: 200,
+        easing: Easing.linear
+      }).start(() => {
+        // this.animateGrowth();
+      });
     }
   }
 };
@@ -139,8 +193,13 @@ export default {
   width: 200;
   height: 50;
   border-radius: 50;
-    align-items: center;
+  align-items: center;
   justify-content: center;
   /* font-size: 30; */
+}
+
+.growth-animated-view {
+  background-color: "rgb(0, 138, 231)";
+  align-self: center;
 }
 </style>
