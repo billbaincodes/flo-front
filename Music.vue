@@ -1,30 +1,34 @@
 <template>
-  <nb-container>
+  <nb-container class="body">
     <nb-header class="hider"/>
     <nb-content>
       <nb-list>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
-          <nb-text class="divider-text">Slow</nb-text>
-          <nb-text class="divider-text" >+</nb-text>
+          <nb-text class="divider-text" :style="{color: 'cyan'}">Slow</nb-text>
+          <nb-text class="divider-text" :style="{color: 'white'}">+</nb-text>
         </nb-list-item>
         <nb-list-item class="divider">
-          <nb-text>Walk Like an Egyptian - The Bangles</nb-text>
+          <nb-text :style="{color: 'white'}">"Walk Like an Egyptian" - The Bangles</nb-text>
           <text>-</text>
         </nb-list-item>
-        <nb-list-item class="divider" itemDivider>
-          <nb-text class="divider-text">Medium</nb-text>
-          <nb-text class="divider-text">+</nb-text>
+        <nb-list-item class="divider" :on-press="navAdd" itemDivider>
+          <nb-text class="divider-text" :style="{color: 'cyan'}">Medium</nb-text>
+          <nb-text class="divider-text" :style="{color: 'white'}">+</nb-text>
         </nb-list-item>
         <nb-list-item class="divider">
-          <nb-text>Born to Run - Bruce Springsteen</nb-text>
+          <nb-text :style="{color: 'white'}">"Born to Run" - Bruce Springsteen</nb-text>
           <text>-</text>
         </nb-list-item>
-        <nb-list-item class="divider" itemDivider>
-          <nb-text class="divider-text">Fast</nb-text>
-          <nb-text class="divider-text">+</nb-text>
+        <nb-list-item class="divider">
+          <nb-text :style="{color: 'white'}">"I Ran" - A Flock of Seagulls</nb-text>
+          <text>-</text>
+        </nb-list-item>
+        <nb-list-item class="divider" :on-press="navAdd" itemDivider>
+          <nb-text class="divider-text" :style="{color: 'cyan'}">Fast</nb-text>
+          <nb-text class="divider-text" :style="{color: 'white'}">+</nb-text>
         </nb-list-item>
         <nb-list-item class="divider">
-          <nb-text>Through the Fire and the Flames - Dragonforce</nb-text>
+          <nb-text :style="{color: 'white'}">"Through the Fire and the Flames" - Dragonforce</nb-text>
           <nb-text>-</nb-text>
         </nb-list-item>
       </nb-list>
@@ -50,6 +54,9 @@ export default {
 </script>
 
 <style>
+.body {
+  background-color: black;
+}
 .hider {
   display: none;
 }
@@ -64,7 +71,7 @@ export default {
 }
 .text-input {
   color: white;
-  background-color: rgb(66, 66, 66);
+  background-color: rgb(43, 43, 43);
   border-color: white;
   border-width: 1;
   width: 225;
@@ -76,6 +83,7 @@ export default {
 .divider {
   display: flex;
   justify-content: space-between;
+  background-color:black;
 }
 .divider-text {
   font-weight: bold;

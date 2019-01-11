@@ -29,7 +29,7 @@ const AppNavigation = StackNavigator(
     grow: Grow
   },
   {
-    initialRouteName: 'main',
+    initialRouteName: 'profile',
   }
 );
 export default {

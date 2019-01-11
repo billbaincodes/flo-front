@@ -10,9 +10,7 @@
     >
       <text class="speedometer-text">{{speed}}</text>
     </animated:view>
-
-    <text class="text-color-primary">playlist : {{zone}}</text>
-
+    <text v-if="run" class="text-color-primary">playlist : {{zone}}</text>
     <touchable-opacity :on-press="speed0">
       <text class="text-color-primary">Speed 0</text>
     </touchable-opacity>
@@ -22,7 +20,6 @@
     <touchable-opacity :on-press="speed2">
       <text class="text-color-primary">Speed 2</text>
     </touchable-opacity>
-
     <touchable-opacity :on-press="startRun" class="flo-button">
       <text v-if="run" class="text-color-primary">run</text>
       <text v-else class="text-color-primary">run</text>
@@ -52,7 +49,7 @@ export default {
       growth: 0,
       speed: 0,
       run: false,
-      zone: "calm",
+      zone: null,
       slow: chopin,
       fast: sexInAPan
     };
@@ -76,19 +73,19 @@ export default {
       if (this.speed == 0) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
-        this.zone = "calm";
+        this.zone = null;
       } else if (this.speed === 1) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.slow);
         await soundObject.playAsync();
-        this.zone = "moderate";
+        this.zone = "calm";
       } else if (this.speed === 2) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.fast);
         await soundObject.playAsync();
-        this.zone = "intense";
+        this.zone = "moderate";
       }
     },
     speed0: function() {
@@ -104,25 +101,28 @@ export default {
       this.run = !this.run;
 
       if (this.run === true) {
+        //Growing animation
+        soundObject.playAsync()
         this.growth.setValue(0);
-
         Animated.timing(this.growth, {
           toValue: 200,
-          duration: 200,
+          duration: 300,
           easing: Easing.linear
         }).start(() => {
           // this.animateGrowth();
         });
       } else {
+        //shrinking animation
         this.growth.setValue(200);
-
         Animated.timing(this.growth, {
           toValue: 0,
-          duration: 200,
+          duration: 300,
           easing: Easing.linear
         }).start(() => {
           // this.animateGrowth();
         });
+        soundObject.pauseAsync()
+
       }
     },
     animateGrowth: function() {

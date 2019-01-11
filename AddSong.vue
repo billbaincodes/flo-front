@@ -1,35 +1,35 @@
 <template>
   <nb-container>
     <nb-header class="hider" hasTabs/>
-    <nb-tabs class="color">
-      <nb-tab heading="Local Storage">
-        <view class="local-container">
+    <nb-tabs  class="color">
+      <nb-tab :style="{backgroundColor: 'black'}"  heading="Local Storage">
+        <view :style="{backgroundColor: 'black'}" class="local-container">
           <nb-content padder>
-            <nb-button class="add-song-local" block light>
-              <text>Access Local Storage</text>
+            <nb-button :style="{backgroundColor: 'rgb(43, 43, 43)'}" class="add-song-local" block light>
+              <text :style="{color: 'white'}">Access Local Storage</text>
             </nb-button>
           </nb-content>
         </view>
       </nb-tab>
-      <nb-tab heading="Cloud Storage">
+      <nb-tab :style="{backgroundColor: 'black'}" heading="Cloud Storage">
         <nb-form>
           <nb-item floatingLabel>
-            <nb-label>Title</nb-label>
-            <nb-input/>
+            <nb-label :style="{color: 'white'}">Title</nb-label>
+            <nb-input :style="{color: 'white'}"/>
           </nb-item>
           <nb-item floatingLabel last>
-            <nb-label>Artist</nb-label>
-            <nb-input/>
+            <nb-label :style="{color: 'white'}">Artist</nb-label>
+            <nb-input :style="{color: 'white'}"/>
           </nb-item>
           <nb-item floatingLabel last>
-            <nb-label>URL</nb-label>
-            <nb-input/>
+            <nb-label :style="{color: 'white'}">URL</nb-label>
+            <nb-input :style="{color: 'white'}"/>
           </nb-item>
         </nb-form>
         <view class="cloud-container">
           <nb-content padder>
-            <nb-button :onPress="submitSong" class="add-song" block light>
-              <text>Add Song!</text>
+            <nb-button :style="{backgroundColor: 'rgb(43, 43, 43)'}" :onPress="submitSong" class="add-song" block light>
+              <text :style="{color: 'white'}">Add Song!</text>
             </nb-button>
           </nb-content>
         </view>
@@ -64,7 +64,6 @@ export default {
   display: none;
 }
 .cloud-container {
-  background-color: white;
   align-items: center;
   justify-content: center;
   flex: 1;
@@ -72,7 +71,7 @@ export default {
 }
 .add-song {
   width: 100;
-  /* background-color: gray; */
+  margin-top: 100;
 }
 
 .add-song-local {
