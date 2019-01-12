@@ -1,17 +1,24 @@
 <template>
   <view class="container">
+    <view class="spacer"></view>
     <animated:view
       class="speedometer"
       :style="{
         height: growth,
         width: growth ,
         borderRadius:growth,
+        borderWidth: bWidth
       }"
     >
-      <text class="speedometer-text">{{speed}}</text>
+      <view class="speedometer-container">
+        <text class="speedometer-text">
+          {{speed}}
+          <text :style="{fontSize: 20, color: 'cyan'}">m/s</text>
+        </text>
+      </view>
     </animated:view>
     <text v-if="run" class="text-color-primary">playlist : {{zone}}</text>
-    <touchable-opacity :on-press="speed0">
+    <!-- <touchable-opacity :on-press="speed0">
       <text class="text-color-primary">Speed 0</text>
     </touchable-opacity>
     <touchable-opacity :on-press="speed1">
@@ -19,7 +26,7 @@
     </touchable-opacity>
     <touchable-opacity :on-press="speed2">
       <text class="text-color-primary">Speed 2</text>
-    </touchable-opacity>
+    </touchable-opacity>-->
     <touchable-opacity :on-press="startRun" class="flo-button">
       <text v-if="run" class="text-color-primary">run</text>
       <text v-else class="text-color-primary">run</text>
@@ -47,6 +54,7 @@ export default {
   data() {
     return {
       growth: 0,
+      bWidth: 0,
       speed: 0,
       run: false,
       zone: null,
@@ -56,6 +64,9 @@ export default {
   },
   created: function() {
     this.growth = new Animated.Value(0);
+  },
+  mounted() {
+    this.speedSimulator();
   },
   watch: {
     speed: function() {
@@ -88,6 +99,14 @@ export default {
         this.zone = "moderate";
       }
     },
+    speedSimulator: function() {
+      setTimeout(() => {
+        this.speed = 1;
+      }, 5000);
+      setTimeout(() => {
+        this.speed = 2;
+      }, 8000);
+    },
     speed0: function() {
       this.speed = 0;
     },
@@ -102,7 +121,8 @@ export default {
 
       if (this.run === true) {
         //Growing animation
-        soundObject.playAsync()
+        this.speed = 0;
+        soundObject.playAsync();
         this.growth.setValue(0);
         Animated.timing(this.growth, {
           toValue: 200,
@@ -113,6 +133,7 @@ export default {
         });
       } else {
         //shrinking animation
+        this.speed = null;
         this.growth.setValue(200);
         Animated.timing(this.growth, {
           toValue: 0,
@@ -121,8 +142,7 @@ export default {
         }).start(() => {
           // this.animateGrowth();
         });
-        soundObject.pauseAsync()
-
+        soundObject.pauseAsync();
       }
     },
     animateGrowth: function() {
@@ -155,7 +175,7 @@ export default {
 .container {
   background-color: black;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex: 1;
 }
 .text-color-primary {
@@ -170,6 +190,7 @@ export default {
   border-radius: 100;
   align-items: center;
   justify-content: center;
+  border-color:  cyan;
 }
 
 .speedometer-text {
@@ -201,5 +222,14 @@ export default {
 .growth-animated-view {
   background-color: "rgb(0, 138, 231)";
   align-self: center;
+}
+.spacer {
+  height: 50;
+  width: 1;
+}
+.speedometer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
 </style>

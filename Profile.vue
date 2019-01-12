@@ -6,20 +6,17 @@
       :source="{uri: 'https://static1.squarespace.com/static/549dd0cee4b029881efa814b/5b101ad2758d46ee70365c19/5c05b5c621c67cd401736b1e/1543878094686/dc-headshot-photographer-52.JPG?format=300w'}"
     />
 
-    <view :style="{backgroundColor: 'rgb(43, 43, 43)', width: 300}">
-      <text class="profile-text">Name: Donnie Denver</text>
-      <text class="profile-text">Email: donnie@gmail.com</text>
-    </view>
-
+    <text class="profile-text">Name: Donnie Denver</text>
+    <text class="profile-text">Email: donnie@gmail.com</text>
+<!-- 
     <nb-button
-    title="nb-button"
-      :style="{backgroundColor: 'rgb(43, 43, 43)', width: 125}"
-      class="add-song-local"
+      title="nb-button"
+      :style="{backgroundColor: 'rgb(43, 43, 43)', width: 125, marginRight: 'auto'}"
       block
       light
     >
       <text :style="{color: 'white'}">Edit Profile</text>
-    </nb-button>
+    </nb-button> -->
   </view>
 </template>
 

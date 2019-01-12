@@ -1,8 +1,11 @@
 <template>
-  <app-navigation class=""></app-navigation>
+  <app-navigation class="app-nav"></app-navigation>
 </template>
 
 <script>
+//disable warnings for demo
+console.disableYellowBox = true;
+
 import Vue from "vue-native-core";
 import { VueNativeBase } from "native-base";
 
@@ -29,7 +32,7 @@ const AppNavigation = StackNavigator(
     grow: Grow
   },
   {
-    initialRouteName: 'profile',
+    initialRouteName: 'splash',
   }
 );
 export default {
@@ -50,6 +53,10 @@ export default {
 }
 
 .nav {
-  background-color: blue
+  background-color: black
+}
+
+.app-nav {
+  background-color: black;
 }
 </style>
