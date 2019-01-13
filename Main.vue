@@ -42,6 +42,7 @@
       <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
       <text class="nav-text" :on-press="navMusic">Go to your Music</text>
     </view>
+    <button :onPress="logger" title="test">log this</button>
   </view>
 </template>
 
@@ -73,7 +74,7 @@ export default {
   created: function() {
     this.growth = new Animated.Value(0);
     this.opacity = new Animated.Value(0);
-    this.bWidth = new Animated.Value(0)
+    this.bWidth = new Animated.Value(0);
   },
   mounted() {
     // simulate speed increase to trigger music
@@ -143,7 +144,6 @@ export default {
           easing: Easing.linear
         }).start(() => {
           // this.animateGrowth();
-          
         });
         Animated.timing(this.opacity, {
           toValue: 1,
@@ -186,6 +186,10 @@ export default {
         });
         soundObject.pauseAsync();
       }
+    },
+    logger: function() {
+      this.$props.navigation.setParams({ title: "title" });
+      console.log(this.$props.navigation);
     }
   }
 };
@@ -210,8 +214,8 @@ export default {
   border-radius: 100;
   align-items: center;
   justify-content: center;
-  border-color:  cyan;
-  border-width: 0
+  border-color: cyan;
+  border-width: 0;
 }
 
 .speedometer-text {

@@ -10,9 +10,14 @@
     <text class="text-color-primary">Password:</text>
     <text-input :style="{padding: 6}" class="text-input"/>
 
+  <view class="buttons">
     <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100}" :on-press="navMusic">
       <text class="text-color-primary">Log In</text>
     </touchable-opacity>
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100}" :on-press="navMusic">
+      <text class="text-color-primary">Sign Up</text>
+    </touchable-opacity>
+    </view>
             </KeyboardAvoidingView>
   </view>
 </template>
@@ -24,12 +29,11 @@ export default {
   props: {
     navigation: {
       type: Object,
-      
     }
   },
   methods: {
     navMusic: function() {
-      this.navigation.navigate("main");
+      this.navigation.navigate("main", {title: 'Main'});
     }
   }
 };
@@ -60,8 +64,15 @@ export default {
   font-size: 80;
 }
 .login {
-  margin: 60;
+  margin-top: 60;
+  margin-right: 10;
   align-items: center;
   justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 </style>

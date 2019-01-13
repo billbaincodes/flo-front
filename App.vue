@@ -20,6 +20,8 @@ import Main from "./Main.vue";
 import Profile from "./Profile.vue";
 import AddSong from "./AddSong.vue";
 import Loop from "./Loop.vue";
+// import Grow from "./Grow.vue"
+import Color from "./Color.vue"
 
 
 const AppNavigation = StackNavigator(
@@ -30,12 +32,13 @@ const AppNavigation = StackNavigator(
     profile: Profile,
     main: Main,
     addsong: AddSong,
-    loop: Loop
+    loop: Loop,
+    color: Color
   },
   {
     initialRouteName: "splash",
     cardStyle: {
-      backgroundColor: "rgba(0,0,0,0.1)"
+      backgroundColor: "rgba(0,0,0,0)"
     },
     navigationOptions: {
       title: 'Welcome',
