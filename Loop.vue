@@ -6,15 +6,14 @@
       v-for="todo in todos"
       :key="todo.text"
     >{{ todo.text }}</text>
-
     <text
       :v-if="loaded"
       class="text-container"
       v-for="song in playlist.slo"
       :key="song.URL"
     >{{ song.URL }}</text>
-    <!-- <text class="text-container" v-for="song in playlist.med" :key="song.id">{{ song.URL }}</text>
-    <text class="text-container" v-for="song in playlist.fast" :key="song.id">{{ song.URL }}</text>-->
+    <text class="text-container" v-for="song in playlist.med" :key="song.URL">{{ song.URL }}</text>
+    <text class="text-container" v-for="song in playlist.fast" :key="song.URL">{{ song.URL }}</text>
     <button title="log" :onPress="log">log</button>
   </view>
 </template>
@@ -30,7 +29,7 @@ export default {
         { text: "Learn Vue" },
         { text: "Build something awesome" }
       ],
-      playlist: {}
+      playlist: { failure: "you" }
     };
   },
 
@@ -45,29 +44,28 @@ export default {
         .then(function(response) {
           return response.json();
         })
-        .then(function(result) {
-          //Sort songs into individual playlists
-          let array = result.playlist;
-          let answer = { slo: [], med: [], fast: [] };
+        .then(result => this.songSorter(result));
+    },
+    songSorter: function(result) {
+      console.log(result);
+      let array = result.playlist;
+      let answer = { slo: [], med: [], fast: [] };
 
-          for (let i = 0; i < array.length; i++) {
-            console.log();
-
-            if (array[i].slo === true) {
-              answer.slo.push(array[i]);
-            } else if (array[i].med === true) {
-              answer.med.push(array[i]);
-            } else {
-              answer.fast.push(array[i]);
-            }
-          }
-          this.playlist = answer;
-          this.loaded = true;
-          console.log(this.playlist);
-        });
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].slo === true) {
+          answer.slo.push(array[i]);
+        } else if (array[i].med === true) {
+          answer.med.push(array[i]);
+        } else {
+          answer.fast.push(array[i]);
+        }
+      }
+      this.$data.playlist = answer;
+      this.loaded = true;
+      console.log(this.playlist);
     },
     log: function() {
-      console.log(this);
+      console.log(this.$data.playlist);
     }
   }
 };

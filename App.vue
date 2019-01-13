@@ -36,7 +36,7 @@ const AppNavigation = StackNavigator(
     color: Color
   },
   {
-    initialRouteName: "splash",
+    initialRouteName: "loop",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },
