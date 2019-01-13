@@ -3,7 +3,7 @@
 </template>
 
 <script>
-//disable warnings for demo
+//CAUTION: DISABLES WARNINGS FOR SCREEN CAP
 console.disableYellowBox = true;
 
 import Vue from "vue-native-core";
@@ -19,8 +19,8 @@ import Music from "./Music.vue";
 import Main from "./Main.vue";
 import Profile from "./Profile.vue";
 import AddSong from "./AddSong.vue";
-import Grow from "./Grow.vue";
 import Loop from "./Loop.vue";
+
 
 const AppNavigation = StackNavigator(
   {
@@ -30,7 +30,6 @@ const AppNavigation = StackNavigator(
     profile: Profile,
     main: Main,
     addsong: AddSong,
-    grow: Grow,
     loop: Loop
   },
   {
@@ -39,6 +38,7 @@ const AppNavigation = StackNavigator(
       backgroundColor: "rgba(0,0,0,0.1)"
     },
     navigationOptions: {
+      title: 'Welcome',
       headerStyle: {
         backgroundColor: "rgb(0,0,0)"
       },

@@ -23,7 +23,8 @@ import {KeyboardAvoidingView} from 'react-native'
 export default {
   props: {
     navigation: {
-      type: Object
+      type: Object,
+      
     }
   },
   methods: {
@@ -40,9 +41,11 @@ export default {
   align-items: center;
   justify-content: center;
   flex: 1;
+  border-top-width: 4px;
+  border-color: cyan;
 }
 .text-color-primary {
-  color: cyan;
+  color: white;
   font-size: 24;
 }
 .text-input {
