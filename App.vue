@@ -13,14 +13,14 @@ import { VueNativeBase } from "native-base";
 Vue.use(VueNativeBase);
 
 import { StackNavigator } from "vue-native-router";
-import Splash from './Splash.vue'
-import Speedometer from './Speedometer.vue'
-import Music from "./Music.vue"
-import Main from './Main.vue'
-import Profile from './Profile.vue'
-import AddSong from "./AddSong.vue"
-import Grow from "./Grow.vue"
-import Loop from "./Loop.vue"
+import Splash from "./Splash.vue";
+import Speedometer from "./Speedometer.vue";
+import Music from "./Music.vue";
+import Main from "./Main.vue";
+import Profile from "./Profile.vue";
+import AddSong from "./AddSong.vue";
+import Grow from "./Grow.vue";
+import Loop from "./Loop.vue";
 
 const AppNavigation = StackNavigator(
   {
@@ -34,12 +34,24 @@ const AppNavigation = StackNavigator(
     loop: Loop
   },
   {
-    initialRouteName: 'loop',
+    initialRouteName: "splash",
+    cardStyle: {
+      backgroundColor: "rgba(0,0,0,0.1)"
+    },
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: "rgb(0,0,0)"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
   }
 );
 export default {
   components: { AppNavigation }
-}
+};
 </script>
 
 <style>
@@ -55,7 +67,7 @@ export default {
 }
 
 .nav {
-  background-color: black
+  background-color: black;
 }
 
 .app-nav {

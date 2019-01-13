@@ -1,17 +1,25 @@
 <template>
   <view class="container">
     <text class="header">flô</text>
+        <KeyboardAvoidingView
+
+      behavior="padding"
+    >
     <text class="text-color-primary">Email:</text>
     <text-input :style="{padding: 6}" class="text-input"/>
     <text class="text-color-primary">Password:</text>
     <text-input :style="{padding: 6}" class="text-input"/>
+
     <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100}" :on-press="navMusic">
       <text class="text-color-primary">Log In</text>
     </touchable-opacity>
+            </KeyboardAvoidingView>
   </view>
 </template>
 
 <script>
+import {KeyboardAvoidingView} from 'react-native'
+
 export default {
   props: {
     navigation: {
