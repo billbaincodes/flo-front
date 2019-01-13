@@ -40,6 +40,15 @@
 import trash from "./assets/pic-profile.png";
 
 export default {
+  data: function() {
+    return {
+      playlist: {
+        slo: [],
+        med: [],
+        fast: []
+      }
+    };
+  },
   props: {
     navigation: {
       type: Object

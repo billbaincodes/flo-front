@@ -20,6 +20,7 @@ import Main from './Main.vue'
 import Profile from './Profile.vue'
 import AddSong from "./AddSong.vue"
 import Grow from "./Grow.vue"
+import Loop from "./Loop.vue"
 
 const AppNavigation = StackNavigator(
   {
@@ -29,10 +30,11 @@ const AppNavigation = StackNavigator(
     profile: Profile,
     main: Main,
     addsong: AddSong,
-    grow: Grow
+    grow: Grow,
+    loop: Loop
   },
   {
-    initialRouteName: 'splash',
+    initialRouteName: 'loop',
   }
 );
 export default {
