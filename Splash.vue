@@ -74,7 +74,6 @@ export default {
   margin-top: 50;
   align-items: center;
   justify-content: center;
-
 }
 
 .buttons {

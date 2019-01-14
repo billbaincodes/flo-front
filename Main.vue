@@ -259,7 +259,7 @@ export default {
 }
 .text-color-primary {
   color: white;
-  font-size: 24;
+  font-size: 18;
 }
 
 .speedometer {
@@ -283,7 +283,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  text-align: center;
 }
 
 .nav-text {
@@ -327,7 +328,14 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-bottom: 50;
+  width: 100%;
+}
+
+.login {
+  margin-top: 30;
+  align-items: center;
+  justify-content: center;
 }
 </style>
