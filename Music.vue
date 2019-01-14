@@ -8,7 +8,7 @@
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
         <nb-list-item class="divider">
-          <nb-text :style="{color: 'white'}">"Walk Like an Egyptian" - The Bangles</nb-text>
+          <nb-text :style="{color: 'white'}">"Teardrop" - Massive Attack</nb-text>
         </nb-list-item>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Moderate</nb-text>

@@ -16,10 +16,10 @@
         </nb-form>
 
   <view class="buttons">
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMain">
       <text class="text-color-primary">Log In</text>
     </touchable-opacity>
-        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMain">
       <text class="text-color-primary">Sign Up</text>
     </touchable-opacity>
     </view>
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    navMusic: function() {
+    navMain: function() {
       this.navigation.navigate("main", {title: 'Main'});
     }
   }
@@ -72,7 +72,6 @@ export default {
 }
 .login {
   margin-top: 50;
-  /* margin-right: 10; */
   align-items: center;
   justify-content: center;
 

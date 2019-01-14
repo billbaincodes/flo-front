@@ -4,10 +4,10 @@
     <animated:view
       class="speedometer"
       :style="{
-        height: growth,
-        width: growth ,
+        height: 200,
+        width: 200 ,
         borderRadius:growth,
-        borderWidth: bWidth,
+        borderWidth: 2,
         opacity: opacity
       }"
     >
@@ -17,13 +17,13 @@
       }">
           <text class="speedometer-text">
             {{speedDisplay}}
-            <text v-if="run" :style="{fontSize: 20, color: 'white'}">m/s</text>
+            <animated:text :style="{fontSize: 20, color: 'white', opacity: opacity}">m/s</animated:text>
           </text>
         </animated:view>
       </view>
     </animated:view>
     <animated:view :style="{opacity: opacity}">
-      <text class="text-color-primary">{{zone}}</text>
+      <text :style="{fontSize: 40}" class="text-color-primary">{{zone}}</text>
     </animated:view>
 
     <!-- <touchable-opacity :on-press="speed0">
@@ -41,10 +41,14 @@
     </touchable-opacity>
 
 
-    <touchable-opacity class="nav">
-      <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
-      <text class="nav-text" :on-press="navMusic">Go to your Music</text>
+  <view class="buttons">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
+      <text class="text-color-primary">Log In</text>
     </touchable-opacity>
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
+      <text class="text-color-primary">Sign Up</text>
+    </touchable-opacity>
+    </view>
 
 
 
@@ -53,8 +57,9 @@
 
 <script>
 import { Animated, Easing } from "react-native";
-import chopin from "./assets/audio-chopin.mp3";
-import sexInAPan from "./assets/audio-sexInAPan.mp3";
+import teardrop from "./assets/audio-teardrop.mp3"
+import bornToRun from "./assets/audio-borntorun.mp3"
+import throughTheFireAndFlames from "./assets/audio-throughthefireandflames.mp3"
 
 const soundObject = new Expo.Audio.Sound();
 
@@ -72,9 +77,10 @@ export default {
       speed: 0,
       speedDisplay: 0,
       run: false,
-      zone: null,
-      slow: chopin,
-      fast: sexInAPan
+      zone: 'still',
+      slow: teardrop,
+      med: bornToRun,
+      fast: throughTheFireAndFlames
     };
   },
   created: function() {
@@ -84,7 +90,7 @@ export default {
   },
   mounted() {
     // Simulate speed increase to trigger music
-    this.speedSimulator();
+    // this.speedSimulator();
   },
   watch: {
     speed: function() {
@@ -109,14 +115,18 @@ export default {
         await soundObject.loadAsync(this.slow);
         await soundObject.playAsync();
         this.zone = "calm";
-      } else if (this.speed >=2) {
+      } else if (this.speed >=2 && this.speed < 3) {
+        soundObject.pauseAsync();
+        soundObject.unloadAsync();
+        await soundObject.loadAsync(this.med);
+        await soundObject.playAsync();
+        this.zone = "moderate";
+      } else if (this.speed >= 3) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.fast);
         await soundObject.playAsync();
-        this.zone = "moderate";
-      } else if (this.speed >= 3) {
-
+        this.zone = "intense";
       }
     },
     speedSimulator: function() {
@@ -128,26 +138,41 @@ export default {
       }, 5300);
       setTimeout(() => {
         this.speedDisplay = 1;
+      }, 5500);
+      setTimeout(() => {
         this.speed = 1
-      }, 5600);
+      }, 5500);
       setTimeout(() => {
         this.speedDisplay = 1.3;
-      }, 18000);
+      }, 14000);
       setTimeout(() => {
         this.speedDisplay = 1.4;
-      }, 18020);
+      }, 14020);
       setTimeout(() => {
         this.speedDisplay = 1.8;
-      }, 18120);
+      }, 14120);
       setTimeout(() => {
         this.speedDisplay = 2;
-      }, 18500);
+      }, 14500);
       setTimeout(() => {
         this.speed = 2
-      }, 19000);
+      }, 14500);
+        setTimeout(() => {
+        this.speedDisplay = 2.5;
+      }, 22000);
+      setTimeout(() => {
+        this.speedDisplay = 2.9;
+      }, 22200);
+      setTimeout(() => {
+        this.speedDisplay = 3
+      }, 22500);
+      setTimeout(() => {
+        this.speed = 3
+      }, 22500);
     },
     speed0: function() {
       this.speed = 0;
+      this.speedDisplay = 0
     },
     speed1: function() {
       this.speed = 1;
@@ -160,11 +185,13 @@ export default {
 
       if (this.run === true) {
         //Growing animation
+        this.speed0
+        this.speedSimulator();
+
         soundObject.playAsync();
         this.growth.setValue(200);
         this.opacity.setValue(0);
 
-        this.speed = 0;
         Animated.timing(this.growth, {
           toValue: 200,
           duration: 600,
@@ -188,6 +215,8 @@ export default {
         });
       } else {
         //Shrinking animation
+        this.speed0
+
         this.growth.setValue(200);
         Animated.timing(this.growth, {
           toValue: 200,
@@ -211,7 +240,6 @@ export default {
           // this.animateGrowth();
         });
         soundObject.pauseAsync();
-        this.speed = undefined;
 
       }
     }
@@ -254,11 +282,19 @@ export default {
 .nav {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .nav-text {
   color: white;
-  padding: 20;
+  border-width: 1;
+  border-color: white;
+  margin-top: 40;
+  margin-bottom: 40;
+  font-size: 18;
+  height: 40;
+  width: 90;
 }
 
 .flo-button {
@@ -292,5 +328,6 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 50;
 }
 </style>

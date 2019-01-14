@@ -1,15 +1,29 @@
 <template>
   <view class="container">
     <image
-      :style="{width: 220, height: 220, borderRadius: 200, margin: 25}"
+      :style="{width: 200, height: 200, borderRadius: 200, margin: 25}"
       :source="{uri: 'https://static1.squarespace.com/static/549dd0cee4b029881efa814b/5b101ad2758d46ee70365c19/5c05b5c621c67cd401736b1e/1543878094686/dc-headshot-photographer-52.JPG?format=300w'}"
     />
-    <text :style="{fontSize: 36, color: 'white'}" >Donnie Denver</text>
+    <text :style="{fontSize: 32, color: 'white'}">Donnie Denver</text>
     <text class="profile-text">donnie@gmail.com</text>
+    <view :style="{marginTop: 40}" class="blob"> 
+      <text :style="{borderTopWidth: 0, borderLeftWidth: 0}" class="profile-blob">Runs</text>
+      <text :style="{borderTopWidth: 0}" class="profile-blob">Songs</text>
+      <text :style="{borderTopWidth: 0, borderRightWidth: 0}" class="profile-blob">Playlists</text>
+    </view>
+    <view class="blob"> 
+      <text :style="{borderBottomWidth: 0, borderLeftWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">12</text>
+      <text :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">63</text>
+      <text :style="{borderBottomWidth: 0, borderRightWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">3</text>
+    </view>
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100, borderWidth: 1, borderColor: 'white'}" >
+      <text :style="{fontSize: 18, color: 'white'}">Edit Profile</text>
+    </touchable-opacity>
+  </view>
 </template>
 
 <script>
-import {Ionicons} from '@expo/vector-icons'
+import { Ionicons } from "@expo/vector-icons";
 
 export default {
   data: function() {
@@ -29,15 +43,32 @@ export default {
   },
   async created() {
     await Expo.Font.loadAsync({
-      'Ionicons': require('./node_modules/@expo/vector-icons/fonts/Ionicons.ttf'),
+      Ionicons: require("./node_modules/@expo/vector-icons/fonts/Ionicons.ttf")
     });
 
-    this.loaded = true
+    this.loaded = true;
   }
 };
 </script>
 
 <style>
+.blob {
+  display:flex;
+  flex-direction: row;
+
+}
+.profile-blob {
+  width: 100;
+  height: 40;
+  font-size: 18;
+  border-width: 0.5;
+  border-color: white;
+  color: white;
+  justify-content: flex-start;
+  text-align: center;
+  margin: auto;
+}
+
 .lower {
   height: 30%;
   width: 100%;
@@ -45,6 +76,13 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.login {
+  margin-top: 40;
+  margin-bottom: 40;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -55,10 +93,6 @@ export default {
   border-top-width: 3px;
   border-bottom-width: 3px;
   border-color: cyan;
-}
-
-.text-color-primary {
-  color: cyan;
 }
 
 .header {
@@ -72,8 +106,7 @@ export default {
   margin-top: 40px;
 }
 .profile-text {
-  color: white;
+  color: rgb(180, 180, 180);
   font-size: 20;
 }
-
 </style>
