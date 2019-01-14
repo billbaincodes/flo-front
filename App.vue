@@ -36,7 +36,7 @@ const AppNavigation = StackNavigator(
     color: Color
   },
   {
-    initialRouteName: "loop",
+    initialRouteName: "splash",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },
@@ -52,6 +52,9 @@ const AppNavigation = StackNavigator(
     }
   }
 );
+import { Ionicons } from '@expo/vector-icons';
+
+
 export default {
   components: { AppNavigation }
 };
