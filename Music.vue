@@ -65,6 +65,9 @@ export default {
 <style>
 .body {
   background-color: rgb(43, 43, 43);
+  border-top-width: 4;
+  border-bottom-width: 4;
+  border-color:greenyellow;
 }
 .hider {
   display: none;

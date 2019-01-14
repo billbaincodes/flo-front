@@ -202,6 +202,7 @@ export default {
   justify-content: space-between;
   flex: 1;
   border-top-width: 4px;
+  border-bottom-width: 4px;
   border-color: cyan;
 }
 .text-color-primary {
@@ -243,6 +244,8 @@ export default {
   border-radius: 50;
   align-items: center;
   justify-content: center;
+  border-width: 2;
+  border-color: white;
   /* font-size: 30; */
 }
 

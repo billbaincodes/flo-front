@@ -4,20 +4,26 @@
         <KeyboardAvoidingView
         behavior="padding"
     >
-    <text class="text-color-primary">Email:</text>
-    <text-input :style="{padding: 6}" class="text-input"/>
-    <text class="text-color-primary">Password:</text>
-    <text-input :style="{padding: 6}" class="text-input"/>
+      <nb-form>
+          <nb-item :style="{width: 200, marginRight: 10}" floatingLabel>
+            <nb-label :style="{color: 'white'}">Email</nb-label>
+            <nb-input :style="{color: 'white'}"/>
+          </nb-item>
+          <nb-item :style="{width: 200, marginRight: 10}" floatingLabel>
+            <nb-label :style="{color: 'white'}">Password</nb-label>
+            <nb-input secureTextEntry :style="{color: 'white'}"/>
+          </nb-item>
+        </nb-form>
 
   <view class="buttons">
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 2, borderColor: 'white'}" :on-press="navMusic">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
       <text class="text-color-primary">Log In</text>
     </touchable-opacity>
-        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 2, borderColor: 'white'}" :on-press="navMusic">
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
       <text class="text-color-primary">Sign Up</text>
     </touchable-opacity>
     </view>
-                </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
 
   </view>
 </template>
@@ -46,6 +52,7 @@ export default {
   justify-content: center;
   flex: 1;
   border-top-width: 4px;
+  border-bottom-width: 4px;
   border-color: cyan;
 }
 .text-color-primary {
@@ -65,7 +72,7 @@ export default {
 }
 .login {
   margin-top: 50;
-  margin-right: 10;
+  /* margin-right: 10; */
   align-items: center;
   justify-content: center;
 
