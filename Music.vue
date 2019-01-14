@@ -4,28 +4,25 @@
     <nb-content>
       <nb-list>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
-          <nb-text class="divider-text" :style="{color: 'cyan'}">Slow</nb-text>
-          <nb-text class="divider-text" :style="{color: 'white'}">+</nb-text>
+          <nb-text class="divider-text" :style="{color: 'cyan'}">Calm</nb-text>
+          <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
         <nb-list-item class="divider">
           <nb-text :style="{color: 'white'}">"Walk Like an Egyptian" - The Bangles</nb-text>
-          <text>-</text>
         </nb-list-item>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
-          <nb-text class="divider-text" :style="{color: 'cyan'}">Medium</nb-text>
-          <nb-text class="divider-text" :style="{color: 'white'}">+</nb-text>
+          <nb-text class="divider-text" :style="{color: 'cyan'}">Moderate</nb-text>
+          <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
         <nb-list-item class="divider">
           <nb-text :style="{color: 'white'}">"Born to Run" - Bruce Springsteen</nb-text>
-          <text>-</text>
         </nb-list-item>
         <nb-list-item class="divider">
           <nb-text :style="{color: 'white'}">"I Ran" - A Flock of Seagulls</nb-text>
-          <text>-</text>
         </nb-list-item>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
-          <nb-text class="divider-text" :style="{color: 'cyan'}">Fast</nb-text>
-          <nb-text class="divider-text" :style="{color: 'white'}">+</nb-text>
+          <nb-text class="divider-text" :style="{color: 'cyan'}">Intense</nb-text>
+          <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
         <nb-list-item class="divider">
           <nb-text :style="{color: 'white'}">"Through the Fire and the Flames" - Dragonforce</nb-text>
@@ -67,7 +64,7 @@ export default {
   background-color: rgb(43, 43, 43);
   border-top-width: 4;
   border-bottom-width: 4;
-  border-color:greenyellow;
+  border-color: cyan;
 }
 .hider {
   display: none;
@@ -97,11 +94,10 @@ export default {
 .divider {
   display: flex;
   justify-content: space-between;
-  background-color:rgb(43, 43, 43);
-
+  background-color: rgb(43, 43, 43);
 }
 .divider:first-child {
-    border-top-width: 4px;
+  border-top-width: 4px;
   border-color: cyan;
 }
 

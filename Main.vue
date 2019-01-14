@@ -8,6 +8,7 @@
         width: growth ,
         borderRadius:growth,
         borderWidth: bWidth,
+        opacity: opacity
       }"
     >
       <view class="speedometer-container">
@@ -15,14 +16,14 @@
           opacity: opacity,
       }">
           <text class="speedometer-text">
-            {{speed}}
-            <text v-if="run" :style="{fontSize: 20, color: 'cyan'}">m/s</text>
+            {{speedDisplay}}
+            <text v-if="run" :style="{fontSize: 20, color: 'white'}">m/s</text>
           </text>
         </animated:view>
       </view>
     </animated:view>
     <animated:view :style="{opacity: opacity}">
-      <text class="text-color-primary">zone : {{zone}}</text>
+      <text class="text-color-primary">{{zone}}</text>
     </animated:view>
 
     <!-- <touchable-opacity :on-press="speed0">
@@ -40,10 +41,10 @@
     </touchable-opacity>
 
 
-    <view class="nav">
+    <touchable-opacity class="nav">
       <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
       <text class="nav-text" :on-press="navMusic">Go to your Music</text>
-    </view>
+    </touchable-opacity>
 
 
 
@@ -65,10 +66,11 @@ export default {
   },
   data() {
     return {
-      growth: 0,
+      growth: 200,
       bWidth: 0,
       opacity: 0,
       speed: 0,
+      speedDisplay: 0,
       run: false,
       zone: null,
       slow: chopin,
@@ -81,8 +83,8 @@ export default {
     this.bWidth = new Animated.Value(0);
   },
   mounted() {
-    // simulate speed increase to trigger music
-    // this.speedSimulator();
+    // Simulate speed increase to trigger music
+    this.speedSimulator();
   },
   watch: {
     speed: function() {
@@ -97,31 +99,52 @@ export default {
       this.navigation.navigate("music");
     },
     playMusic: async function() {
-      if (this.speed == 0) {
+      if (this.speed < 1) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         this.zone = null;
-      } else if (this.speed === 1) {
+      } else if (this.speed >= 1 && this.speed < 2) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.slow);
         await soundObject.playAsync();
         this.zone = "calm";
-      } else if (this.speed === 2) {
+      } else if (this.speed >=2) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.fast);
         await soundObject.playAsync();
         this.zone = "moderate";
+      } else if (this.speed >= 3) {
+
       }
     },
     speedSimulator: function() {
       setTimeout(() => {
-        this.speed = 1;
+        this.speedDisplay = 0.4;
       }, 5000);
       setTimeout(() => {
-        this.speed = 2;
-      }, 8000);
+        this.speedDisplay = 0.7;
+      }, 5300);
+      setTimeout(() => {
+        this.speedDisplay = 1;
+        this.speed = 1
+      }, 5600);
+      setTimeout(() => {
+        this.speedDisplay = 1.3;
+      }, 18000);
+      setTimeout(() => {
+        this.speedDisplay = 1.4;
+      }, 18020);
+      setTimeout(() => {
+        this.speedDisplay = 1.8;
+      }, 18120);
+      setTimeout(() => {
+        this.speedDisplay = 2;
+      }, 18500);
+      setTimeout(() => {
+        this.speed = 2
+      }, 19000);
     },
     speed0: function() {
       this.speed = 0;
@@ -138,7 +161,7 @@ export default {
       if (this.run === true) {
         //Growing animation
         soundObject.playAsync();
-        this.growth.setValue(0);
+        this.growth.setValue(200);
         this.opacity.setValue(0);
 
         this.speed = 0;
@@ -157,7 +180,7 @@ export default {
           // this.animateGrowth();
         });
         Animated.timing(this.bWidth, {
-          toValue: 2.5,
+          toValue: 2,
           duration: 600,
           easing: Easing.linear
         }).start(() => {
@@ -165,10 +188,9 @@ export default {
         });
       } else {
         //Shrinking animation
-        this.speed = undefined;
         this.growth.setValue(200);
         Animated.timing(this.growth, {
-          toValue: 0,
+          toValue: 200,
           duration: 600,
           easing: Easing.linear
         }).start(() => {
@@ -182,13 +204,15 @@ export default {
           // this.animateGrowth();
         });
         Animated.timing(this.bWidth, {
-          toValue: 0,
+          toValue: 2,
           duration: 600,
           easing: Easing.linear
         }).start(() => {
           // this.animateGrowth();
         });
         soundObject.pauseAsync();
+        this.speed = undefined;
+
       }
     }
   }
@@ -206,7 +230,7 @@ export default {
   border-color: cyan;
 }
 .text-color-primary {
-  color: cyan;
+  color: white;
   font-size: 24;
 }
 
@@ -223,7 +247,7 @@ export default {
 
 .speedometer-text {
   font-size: 75;
-  color: cyan;
+  color: white;
   margin: auto;
 }
 
@@ -245,7 +269,7 @@ export default {
   align-items: center;
   justify-content: center;
   border-width: 2;
-  border-color: white;
+  border-color: cyan;
   /* font-size: 30; */
 }
 
