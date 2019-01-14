@@ -38,11 +38,15 @@
       <text v-if="!run" class="text-color-primary">run</text>
       <text v-else class="text-color-primary">stop</text>
     </touchable-opacity>
+
+
     <view class="nav">
       <text class="nav-text" :on-press="navProfile">Go to your Profile</text>
       <text class="nav-text" :on-press="navMusic">Go to your Music</text>
     </view>
-    <button :onPress="logger" title="test">log this</button>
+
+
+
   </view>
 </template>
 
@@ -186,10 +190,6 @@ export default {
         });
         soundObject.pauseAsync();
       }
-    },
-    logger: function() {
-      this.$props.navigation.setParams({ title: "title" });
-      console.log(this.$props.navigation);
     }
   }
 };
@@ -197,10 +197,12 @@ export default {
 
 <style>
 .container {
-  background-color: black;
+  background-color: rgb(43, 43, 43);
   align-items: center;
   justify-content: space-between;
   flex: 1;
+  border-top-width: 4px;
+  border-color: cyan;
 }
 .text-color-primary {
   color: cyan;
@@ -256,5 +258,12 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>

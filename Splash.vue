@@ -2,8 +2,7 @@
   <view class="container">
     <text class="header">flô</text>
         <KeyboardAvoidingView
-
-      behavior="padding"
+        behavior="padding"
     >
     <text class="text-color-primary">Email:</text>
     <text-input :style="{padding: 6}" class="text-input"/>
@@ -11,14 +10,15 @@
     <text-input :style="{padding: 6}" class="text-input"/>
 
   <view class="buttons">
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100, borderWidth: 2, borderColor: 'white'}" :on-press="navMusic">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 2, borderColor: 'white'}" :on-press="navMusic">
       <text class="text-color-primary">Log In</text>
     </touchable-opacity>
-        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100, borderWidth: 2, borderColor: 'white'}" :on-press="navMusic">
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 2, borderColor: 'white'}" :on-press="navMusic">
       <text class="text-color-primary">Sign Up</text>
     </touchable-opacity>
     </view>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+
   </view>
 </template>
 
@@ -50,7 +50,7 @@ export default {
 }
 .text-color-primary {
   color: white;
-  font-size: 24;
+  font-size: 18;
 }
 .text-input {
   color: white;
@@ -64,15 +64,18 @@ export default {
   font-size: 80;
 }
 .login {
-  margin-top: 60;
+  margin-top: 50;
   margin-right: 10;
   align-items: center;
   justify-content: center;
+
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
+  margin-bottom: 50;
 }
 </style>

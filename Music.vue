@@ -64,16 +64,18 @@ export default {
 
 <style>
 .body {
-  background-color: black;
+  background-color: rgb(43, 43, 43);
 }
 .hider {
   display: none;
 }
 .container {
-  background-color: black;
+  background-color: rgb(43, 43, 43);
   align-items: center;
   justify-content: center;
   flex: 1;
+  border-top-width: 4px;
+  border-color: cyan;
 }
 .text-color-primary {
   color: cyan;
@@ -92,8 +94,14 @@ export default {
 .divider {
   display: flex;
   justify-content: space-between;
-  background-color:black;
+  background-color:rgb(43, 43, 43);
+
 }
+.divider:first-child {
+    border-top-width: 4px;
+  border-color: cyan;
+}
+
 .divider-text {
   font-weight: bold;
   font-size: 20;
