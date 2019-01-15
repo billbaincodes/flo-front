@@ -1,45 +1,45 @@
 <template>
   <view class="container">
-    <text>Location:</text>
-    <text v-if="location.coords">{{location.coords.latitude}}</text>
-    <text v-if="location.coords">{{location.coords.longitude}}</text>
-    <text v-if="location.coords">{{location.coords.speed}}</text>
+    <text class="header">flô</text>
+        <KeyboardAvoidingView
+        behavior="padding"
+    >
+      <nb-form>
+          <nb-item :style="{width: 200, marginRight: 10}" floatingLabel>
+            <nb-label :style="{color: 'white'}">Email</nb-label>
+            <nb-input :style="{color: 'white'}"/>
+          </nb-item>
+          <nb-item :style="{width: 200, marginRight: 10}" floatingLabel>
+            <nb-label :style="{color: 'white'}">Password</nb-label>
+            <nb-input secureTextEntry :style="{color: 'white'}"/>
+          </nb-item>
+        </nb-form>
 
-    <touchable-opacity :on-press="getLocation">
-      <text>get location</text>
+  <view class="buttons">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width: 90}" :on-press="navMain">
+      <text class="text-color-primary">Log In</text>
     </touchable-opacity>
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width: 90}" :on-press="navMain">
+      <text class="text-color-primary">Sign Up</text>
+    </touchable-opacity>
+    </view>
+    </KeyboardAvoidingView>
+
   </view>
 </template>
 
 <script>
-import { Constants, Location, Permissions } from "expo";
+import {KeyboardAvoidingView} from 'react-native'
 
 export default {
-  beforeMount() {
-    window.setInterval(this.getLocation, 500)
-  },
-  data() {
-    return {
-      location: {},
-      errorMessage: ""
-    };
+  props: {
+    navigation: {
+      type: Object,
+    }
   },
   methods: {
-    getLocation: function() {
-      Permissions.askAsync(Permissions.LOCATION)
-        .then(status => {
-          if (status !== "granted") {
-            errorMessage = "Permission to access location was denied";
-          }
-          Location.getCurrentPositionAsync({ accuracy: 6 }).then(location1 => {
-            location = location1;
-            this.location = location;
-            console.log(location.coords)
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    navMain: function() {
+      this.navigation.navigate("main", {title: 'Main'});
     }
   }
 };
@@ -47,12 +47,40 @@ export default {
 
 <style>
 .container {
-  background-color: white;
+  background-color: rgb(43, 43, 43);
   align-items: center;
   justify-content: center;
   flex: 1;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-color: cyan;
 }
 .text-color-primary {
-  color: blue;
+  color: white;
+  font-size: 18;
+}
+.text-input {
+  color: white;
+  background-color: rgb(66, 66, 66);
+  border-color: white;
+  border-width: 1;
+  width: 225;
+}
+.header {
+  color: cyan;
+  font-size: 80;
+}
+.login {
+  margin-top: 50;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 50;
 }
 </style>
