@@ -51,7 +51,6 @@
     </view>
 
 
-
   </view>
 </template>
 
@@ -63,11 +62,16 @@ import throughTheFireAndFlames from "./assets/audio-throughthefireandflames.mp3"
 
 const soundObject = new Expo.Audio.Sound();
 
+
 export default {
+  navigationOptions: {
+      title: 'candy'
+  },
   props: {
     navigation: {
       type: Object
-    }
+    },
+
   },
   data() {
     return {
@@ -89,6 +93,9 @@ export default {
     this.bWidth = new Animated.Value(0);
   },
   mounted() {
+    console.log(this.$props);
+    
+
     // Simulate speed increase to trigger music
     // this.speedSimulator();
   },

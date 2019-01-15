@@ -1,5 +1,5 @@
 <template>
-    <app-navigation class="app-nav"></app-navigation>
+  <app-navigation class="app-nav"></app-navigation>
 </template>
 
 <script>
@@ -21,29 +21,88 @@ import Profile from "./Profile.vue";
 import AddSong from "./AddSong.vue";
 import Loop from "./Loop.vue";
 // import Grow from "./Grow.vue"
-import Color from "./Color.vue"
-import EditProfile from "./EditProfile.vue"
-
+import Color from "./Color.vue";
+import EditProfile from "./EditProfile.vue";
 
 const AppNavigation = StackNavigator(
   {
     splash: Splash,
     speedometer: Speedometer,
-    music: Music,
-    profile: Profile,
-    main: Main,
-    addsong: AddSong,
+    music: {
+      screen: Music,
+      navigationOptions: {
+        title: "Music",
+        headerStyle: {
+          backgroundColor: "rgb(0,0,0)"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+      }
+    },
+    profile: {
+      screen: Profile,
+      navigationOptions: {
+        title: "Profile",
+        headerStyle: {
+          backgroundColor: "rgb(0,0,0)"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+      }
+    },
+    addsong: {
+      screen: AddSong,
+      navigationOptions: {
+        title: "Add Song",
+        headerStyle: {
+          backgroundColor: "rgb(0,0,0)"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+      }
+    },
     loop: Loop,
     color: Color,
-    editProfile: EditProfile
+    editProfile: {
+      screen: EditProfile,
+      navigationOptions: {
+        title: "Edit Profile",
+        headerStyle: {
+          backgroundColor: "rgb(0,0,0)"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+      }
+    },
+    main: {
+      screen: Main,
+      navigationOptions: {
+        title: "flô",
+        headerStyle: {
+          backgroundColor: "rgb(0,0,0)"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+      }
+    }
   },
   {
-    initialRouteName: "music",
+    initialRouteName: "splash",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },
     navigationOptions: {
-      title: 'Welcome',
+      title: "Welcome",
       headerStyle: {
         backgroundColor: "rgb(0,0,0)"
       },
@@ -54,8 +113,7 @@ const AppNavigation = StackNavigator(
     }
   }
 );
-import { Ionicons } from '@expo/vector-icons';
-
+import { Ionicons } from "@expo/vector-icons";
 
 export default {
   components: { AppNavigation }

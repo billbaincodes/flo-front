@@ -30,7 +30,6 @@
         <text class="text-color-primary">Save</text>
       </touchable-opacity>
     </view>
-    <button title="button" :onPress="logger">log it</button>
   </view>
 </template>
 
@@ -63,7 +62,7 @@ export default {
         alert("bad info");
       } else {
         this.addSongFetch(songDetails);
-        // this.navigation.goBack();
+        this.navigation.goBack();
       }
     },
     addSongFetch: function(payload) {
@@ -82,11 +81,11 @@ export default {
       console.log('I was called')
         let currentList = this.$props.navigation.state.params.list
         let payload = {
-          "slo": false,
-          "med": false,
-          "fast": false,
-          "users_id": 1,
-          "song_id": this.$data.newSongID
+          slo: false,
+          med: false,
+          fast: false,
+          users_id: 1,
+          song_id: this.$data.newSongID
         }
 
         if (currentList === 'slo') {

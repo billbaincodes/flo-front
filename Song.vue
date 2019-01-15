@@ -24,15 +24,17 @@ export default {
         { cancelable: true }
       );
     },
-    deleteSongFetch: function(){
-      let songID = this.$props.item.id
+
+    deleteSongFetch: function() {
+      let songID = this.$props.item.id;
+
+      fetch(`https://flo-back.herokuapp.com/song/${songID}`, {
+        method: "DELETE"
+      });
 
       fetch(`https://flo-back.herokuapp.com/playlist/${songID}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
+        method: "DELETE"
+      });
     }
   }
 };
