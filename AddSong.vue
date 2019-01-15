@@ -1,52 +1,47 @@
 <template>
-  <nb-container>
-    <nb-header class="hider" hasTabs/>
-    <nb-tabs  class="color">
-      <nb-tab :style="{backgroundColor: 'black'}"  heading="Local Storage">
-        <view :style="{backgroundColor: 'black'}" class="local-container">
-          <nb-content padder>
-            <nb-button :style="{backgroundColor: 'rgb(43, 43, 43)'}" class="add-song-local" block light>
-              <text :style="{color: 'white'}">Access Local Storage</text>
-            </nb-button>
-          </nb-content>
-        </view>
-      </nb-tab>
-      <nb-tab :style="{backgroundColor: 'black'}" heading="Cloud Storage">
-        <nb-form>
-          <nb-item floatingLabel>
-            <nb-label :style="{color: 'white'}">Title</nb-label>
-            <nb-input v-model="songTitle" :style="{color: 'white'}"/>
-          </nb-item>
-          <nb-item floatingLabel last>
-            <nb-label :style="{color: 'white'}">Artist</nb-label>
-            <nb-input v-model="songArtist" :style="{color: 'white'}"/>
-          </nb-item>
-          <nb-item floatingLabel last>
-            <nb-label :style="{color: 'white'}">URL</nb-label>
-            <nb-input v-model="songURL" :style="{color: 'white'}"/>
-          </nb-item>
-        </nb-form>
-        <view class="cloud-container">
-          <nb-content padder>
-            <nb-button :style="{backgroundColor: 'rgb(43, 43, 43)'}" :onPress="submitSong" class="add-song" block light>
-              <text :style="{color: 'white'}">Add Song!</text>
-            </nb-button>
-          </nb-content>
-        </view>
-      </nb-tab>
-    </nb-tabs>
-  </nb-container>
+  <view class="container">
+    <nb-form>
+      <nb-item :style="{marginRight: 14}" stackedLabel>
+        <nb-label :style="{color: 'white'}">Title</nb-label>
+        <nb-input v-model="title" :style="{color: 'rgb(190, 190, 190)'}"/>
+      </nb-item>
+      <nb-item :style="{marginRight: 14}" stackedLabel>
+        <nb-label :style="{color: 'white'}">Artist</nb-label>
+        <nb-input v-model="artist" :style="{color: 'rgb(190, 190, 190)'}"/>
+      </nb-item>
+      <nb-item :style="{marginRight: 14}" stackedLabel>
+        <nb-label :style="{color: 'white'}">URL</nb-label>
+        <nb-input v-model="URL" :style="{color: 'rgb(190, 190, 190)'}"/>
+      </nb-item>
+    </nb-form>
+    <view class="lower">
+      <touchable-opacity
+        :onPress="pickImage"
+        class="login"
+        :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width: 130}"
+      >
+        <text class="text-color-primary">Device Storage</text>
+      </touchable-opacity>
+      <touchable-opacity
+        :onPress="addSong"
+        class="login"
+        :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width: 130}"
+      >
+        <text class="text-color-primary">Save</text>
+      </touchable-opacity>
+    </view>
+    <button title="button" :onPress="logger">log it</button>
+  </view>
 </template>
 
 <script>
-import { Container, Header, Content, Text, Button, Toast } from "native-base";
-
 export default {
   data: function() {
     return {
-      songTitle: "",
-      songArtist: "",
-      songURL: ""
+      title: false,
+      artist: false,
+      URL: false,
+      newSongID: undefined
     };
   },
   props: {
@@ -55,61 +50,93 @@ export default {
     }
   },
   methods: {
-    submitSong: function() {
-      console.log("song added");
-      console.log(this.songTitle);
-      console.log(this.songArtist);
-      console.log(this.songURL);
+    pickImage: function() {
+      Expo.ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [1, 1]
+      });
+    },
+    addSong: function() {
+      let songDetails = this.$data;
 
+      if (!songDetails.title || !songDetails.artist || !songDetails.URL) {
+        alert("bad info");
+      } else {
+        this.addSongFetch(songDetails);
+        // this.navigation.goBack();
+      }
+    },
+    addSongFetch: function(payload) {
       fetch("https://flo-back.herokuapp.com/song", {
-        method: 'POST',
+        method: "POST",
         headers: {
-          "Content-Type": "application/json" 
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          title: this.songTitle,
-          artist: this.songArtist,
-          URL: this.songURL
-        })
+        body: JSON.stringify(payload)
       })
+        .then(response => response.json())
+        .then(body => (this.$data.newSongID = body.addedSong.id))
+        .then(this.addSongToListFetch);
+    },
+    addSongToListFetch: function() {
+      console.log('I was called')
+        let currentList = this.$props.navigation.state.params.list
+        let payload = {
+          "slo": false,
+          "med": false,
+          "fast": false,
+          "users_id": 1,
+          "song_id": this.$data.newSongID
+        }
 
-      this.$props.navigation.goBack()
+        if (currentList === 'slo') {
+          payload.slo = true
+        } else if (currentList === 'med') {
+          payload.med = true
+        } else {
+          payload.fast = true
+        }
 
+        fetch("https://flo-back.herokuapp.com/playlist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(response => response.json());
+    },
+    logger: function() {
+      console.log(this.$props.navigation.state.params.list);
     }
   }
 };
 </script>
 
-
 <style>
-.tabs {
-  background-color: black;
-  /* color: cyan; */
-}
-.hider {
-  display: none;
-}
-.cloud-container {
+.lower {
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  flex: 1;
-  margin-bottom: 175px;
-}
-.add-song {
-  width: 100;
-  margin-top: 100;
+  justify-content: space-evenly;
 }
 
-.add-song-local {
-  width: 300;
-  /* background-color: gray; */
+.container {
+  background-color: rgb(43, 43, 43);
+  flex: 1;
+  border-top-width: 4;
+  border-bottom-width: 4;
+  border-color: cyan;
 }
 
-.local-container {
-    background-color: white;
+.text-color-primary {
+  color: white;
+  font-size: 18;
+}
+
+.login {
+  margin-top: 50;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  margin-top: 100px;
 }
 </style>

@@ -3,7 +3,7 @@
     <nb-header class="hider"/>
     <nb-content>
       <nb-list>
-        <nb-list-item class="divider" :on-press="navAdd" itemDivider>
+        <nb-list-item class="divider" :on-press="navSlo" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Calm</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
@@ -14,7 +14,7 @@
           :key="song.URL"
           :item="song"
         ></song>
-        <nb-list-item class="divider" :on-press="navAdd" itemDivider>
+        <nb-list-item class="divider" :on-press="navMed" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Moderate</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
@@ -25,7 +25,7 @@
           :key="song.URL"
           :item="song"
         ></song>
-        <nb-list-item class="divider" :on-press="navAdd" itemDivider>
+        <nb-list-item class="divider" :on-press="navFast" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Intense</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
@@ -57,12 +57,18 @@ export default {
       type: Object
     }
   },
-  created: function() {
+  mounted: function() {
     this.playlistFetch();
   },
   methods: {
-    navAdd: function() {
-      this.navigation.navigate("addsong");
+    navSlo: function() {
+      this.navigation.navigate("addsong", {list: 'slo'});
+    },
+    navMed: function() {
+      this.navigation.navigate("addsong", {list: 'med'});
+    },
+    navFast: function() {
+      this.navigation.navigate("addsong", {list: 'fast'});
     },
     playlistFetch: function() {
       console.log("mounted");

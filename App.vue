@@ -38,7 +38,7 @@ const AppNavigation = StackNavigator(
     editProfile: EditProfile
   },
   {
-    initialRouteName: "splash",
+    initialRouteName: "music",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },

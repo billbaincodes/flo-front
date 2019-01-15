@@ -3,19 +3,19 @@
     <nb-form>
       <nb-item :style="{marginRight: 14}" stackedLabel>
         <nb-label :style="{color: 'white'}">First</nb-label>
-        <nb-input defaultValue="Donnie" :style="{color: 'rgb(190, 190, 190)'}"/>
+        <nb-input v-model="first" defaultValue="Donnie" :style="{color: 'rgb(190, 190, 190)'}"/>
       </nb-item>
       <nb-item :style="{marginRight: 14}" stackedLabel>
         <nb-label :style="{color: 'white'}">Last</nb-label>
-        <nb-input defaultValue="Denver" :style="{color: 'rgb(190, 190, 190)'}"/>
+        <nb-input v-model="last" defaultValue="Denver" :style="{color: 'rgb(190, 190, 190)'}"/>
       </nb-item>
       <nb-item :style="{marginRight: 14}" stackedLabel>
         <nb-label :style="{color: 'white'}">Email</nb-label>
-        <nb-input defaultValue="donnie@gmail.com" :style="{color: 'rgb(190, 190, 190)'}"/>
+        <nb-input v-model="email" defaultValue="donnie@gmail.com" :style="{color: 'rgb(190, 190, 190)'}"/>
       </nb-item>
       <nb-item :style="{marginRight: 14}" stackedLabel>
         <nb-label :style="{color: 'white'}">Password</nb-label>
-        <nb-input secureTextEntry :style="{color: 'rgb(190, 190, 190)'}"/>
+        <nb-input v-model="pass" secureTextEntry :style="{color: 'rgb(190, 190, 190)'}"/>
       </nb-item>
       <nb-item :style="{marginRight: 14}" stackedLabel>
         <nb-label :style="{color: 'white'}">Confirm Password</nb-label>
