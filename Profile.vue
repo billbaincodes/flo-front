@@ -12,11 +12,11 @@
       <text :style="{borderTopWidth: 0, borderRightWidth: 0}" class="profile-blob">Playlists</text>
     </view>
     <view class="blob"> 
-      <text :style="{borderBottomWidth: 0, borderLeftWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">12</text>
-      <text :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">4</text>
+      <text :style="{borderBottomWidth: 0, borderLeftWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">17</text>
+      <text :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">9</text>
       <text :style="{borderBottomWidth: 0, borderRightWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">3</text>
     </view>
-    <touchable-opacity :onPress="navEdit" class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100, borderWidth: 1, borderColor: 'white'}">
+    <touchable-opacity :onPress="navEdit" class="login" :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width:110}">
       <text :style="{fontSize: 18, color: 'white'}">Edit Profile</text>
     </touchable-opacity>
   </view>

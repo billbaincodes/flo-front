@@ -1,6 +1,6 @@
 <template>
   <nb-list-item class="divider">
-    <nb-text class="song-text">{{item.title}}</nb-text>
+    <nb-text class="song-text">"{{item.title}}" - {{item.artist}}</nb-text>
   </nb-list-item>
 </template>
 

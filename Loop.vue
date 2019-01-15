@@ -95,3 +95,53 @@ export default {
   padding: 2;
 }
 </style>
+
+
+<!-- dummy list -->
+
+<!--
+let playlist = {
+  "fast": [
+    {
+      "URL": "http://song.com/born-to-run",
+      "fast": true,
+      "med": false,
+      "slo": false,
+    },
+    {
+      "URL": "http://song.com/too-fast-for-love",
+      "fast": true,
+      "med": false,
+      "slo": false,
+    },
+    ],
+    "med": [
+      {
+        "URL": "http://song.com/i-ran",
+        "fast": false,
+        "med": true,
+        "slo": false,
+      },
+      {
+        "URL": "http://song.com/running-with-the-devil",
+        "fast": false,
+        "med": true,
+        "slo": false,
+      },
+    ],
+      "slo": [
+        {
+          "URL": "http://song.com/walk-like-an-egyptian",
+          "fast": false,
+          "med": false,
+          "slo": true,
+        },
+        {
+          "URL": "http://song.com/i-walk-the-line",
+          "fast": false,
+          "med": false,
+          "slo": true,
+        },
+    ],
+  }
+-->

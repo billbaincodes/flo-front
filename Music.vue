@@ -7,49 +7,49 @@
           <nb-text class="divider-text" :style="{color: 'cyan'}">Calm</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
-        <nb-list-item class="divider">
-          <nb-text :style="{color: 'white'}">"Teardrop" - Massive Attack</nb-text>
-        </nb-list-item>
+        <song
+          :v-if="loaded"
+          class="text-container"
+          v-for="song in playlist.slo"
+          :key="song.URL"
+          :item="song"
+        ></song>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Moderate</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
-        <nb-list-item class="divider">
-          <nb-text :style="{color: 'white'}">"Born to Run" - Bruce Springsteen</nb-text>
-        </nb-list-item>
-        <nb-list-item class="divider">
-          <nb-text :style="{color: 'white'}">"I Ran" - A Flock of Seagulls</nb-text>
-        </nb-list-item>
+        <song
+          :v-if="loaded"
+          class="text-container"
+          v-for="song in playlist.med"
+          :key="song.URL"
+          :item="song"
+        ></song>
         <nb-list-item class="divider" :on-press="navAdd" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Intense</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
         </nb-list-item>
-        <nb-list-item class="divider">
-          <nb-text :style="{color: 'white'}">"Through the Fire and the Flames" - Dragonforce</nb-text>
-        </nb-list-item>
+        <song
+          :v-if="loaded"
+          class="text-container"
+          v-for="song in playlist.fast"
+          :key="song.URL"
+          :item="song"
+        ></song>
       </nb-list>
-      <song
-      :v-if="loaded"
-      class="text-container"
-      v-for="song in playlist.slo"
-      :key="song.URL"></song>
     </nb-content>
   </nb-container>
 </template>
 
 <script>
 import trash from "./assets/pic-profile.png";
-import song from "./Song.vue"
+import song from "./Song.vue";
 
 export default {
-  
+  components: { song },
   data: function() {
     return {
-      playlist: {
-        slo: [],
-        med: [],
-        fast: []
-      }
+      playlist: { failure: "you" }
     };
   },
   props: {
@@ -57,9 +57,38 @@ export default {
       type: Object
     }
   },
+  created: function() {
+    this.playlistFetch();
+  },
   methods: {
     navAdd: function() {
       this.navigation.navigate("addsong");
+    },
+    playlistFetch: function() {
+      console.log("mounted");
+      fetch("https://flo-back.herokuapp.com/playlist/user/1")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(result => this.songSorter(result));
+    },
+    songSorter: function(result) {
+      console.log(result);
+      let array = result.playlist;
+      let answer = { slo: [], med: [], fast: [] };
+
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].slo === true) {
+          answer.slo.push(array[i]);
+        } else if (array[i].med === true) {
+          answer.med.push(array[i]);
+        } else {
+          answer.fast.push(array[i]);
+        }
+      }
+      this.$data.playlist = answer;
+      this.loaded = true;
+      console.log(this.playlist);
     }
   }
 };

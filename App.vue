@@ -23,8 +23,6 @@ import Loop from "./Loop.vue";
 // import Grow from "./Grow.vue"
 import Color from "./Color.vue"
 import EditProfile from "./EditProfile.vue"
-import toDoItem from "./toDoItem.vue"
-import toDoList from "./toDoList.vue"
 
 
 const AppNavigation = StackNavigator(
@@ -37,12 +35,10 @@ const AppNavigation = StackNavigator(
     addsong: AddSong,
     loop: Loop,
     color: Color,
-    editProfile: EditProfile,
-    todoitem: toDoItem,
-    todolist: toDoList
+    editProfile: EditProfile
   },
   {
-    initialRouteName: "loop",
+    initialRouteName: "splash",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },

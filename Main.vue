@@ -42,10 +42,10 @@
 
 
   <view class="buttons">
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'rgb(70, 70, 70)'}" :on-press="navProfile">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width: 90}" :on-press="navProfile">
       <text class="text-color-primary">Profile</text>
     </touchable-opacity>
-        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'rgb(70, 70, 70)'}" :on-press="navMusic">
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width: 90}" :on-press="navMusic">
       <text class="text-color-primary">Music</text>
     </touchable-opacity>
     </view>
@@ -109,19 +109,19 @@ export default {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         this.zone = null;
-      } else if (this.speed >= 1 && this.speed < 2) {
+      } else if (this.speed >= 1 && this.speed < 3) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.slow);
         await soundObject.playAsync();
         this.zone = "calm";
-      } else if (this.speed >=2 && this.speed < 3) {
+      } else if (this.speed >=3 && this.speed < 6) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.med);
         await soundObject.playAsync();
         this.zone = "moderate";
-      } else if (this.speed >= 3) {
+      } else if (this.speed >= 6) {
         soundObject.pauseAsync();
         soundObject.unloadAsync();
         await soundObject.loadAsync(this.fast);
@@ -143,31 +143,31 @@ export default {
         this.speed = 1
       }, 5500);
       setTimeout(() => {
-        this.speedDisplay = 1.3;
+        this.speedDisplay = 1.8;
       }, 12000);
       setTimeout(() => {
-        this.speedDisplay = 1.4;
+        this.speedDisplay = 2.1;
       }, 12020);
       setTimeout(() => {
-        this.speedDisplay = 1.8;
+        this.speedDisplay = 2.7;
       }, 12120);
       setTimeout(() => {
-        this.speedDisplay = 2;
+        this.speedDisplay = 3;
       }, 12500);
-      setTimeout(() => {
-        this.speed = 2
-      }, 12500);
-        setTimeout(() => {
-        this.speedDisplay = 2.5;
-      }, 19000);
-      setTimeout(() => {
-        this.speedDisplay = 2.9;
-      }, 19200);
-      setTimeout(() => {
-        this.speedDisplay = 3
-      }, 19500);
       setTimeout(() => {
         this.speed = 3
+      }, 12500);
+        setTimeout(() => {
+        this.speedDisplay = 4.1;
+      }, 19000);
+      setTimeout(() => {
+        this.speedDisplay = 5.2;
+      }, 19200);
+      setTimeout(() => {
+        this.speedDisplay = 6.0
+      }, 19500);
+      setTimeout(() => {
+        this.speed = 6
       }, 19500);
     },
     speed0: function() {
