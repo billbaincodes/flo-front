@@ -1,6 +1,8 @@
 <template>
+
   <text> {{item.id}}. {{item.text}} </text>
 </template>
+
 
 <script>
 export default {

@@ -14,13 +14,25 @@
     >{{ song.URL }}</text>
     <text class="text-container" v-for="song in playlist.med" :key="song.URL">{{ song.URL }}</text>
     <text class="text-container" v-for="song in playlist.fast" :key="song.URL">{{ song.URL }}</text>
+
+    <song
+      :v-if="loaded"
+      class="text-container"
+      v-for="song in playlist.slo"
+      :key="song.URL"
+      :item="song"
+    ></song>
+
     <button title="log" :onPress="log">log</button>
   </view>
 </template>
 
 
 <script>
-export default {  
+import song from "./Song";
+
+export default {
+  components: { song },
   data: function() {
     return {
       loaded: false,

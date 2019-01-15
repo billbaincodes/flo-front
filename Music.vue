@@ -28,14 +28,21 @@
           <nb-text :style="{color: 'white'}">"Through the Fire and the Flames" - Dragonforce</nb-text>
         </nb-list-item>
       </nb-list>
+      <song
+      :v-if="loaded"
+      class="text-container"
+      v-for="song in playlist.slo"
+      :key="song.URL"></song>
     </nb-content>
   </nb-container>
 </template>
 
 <script>
 import trash from "./assets/pic-profile.png";
+import song from "./Song.vue"
 
 export default {
+  
   data: function() {
     return {
       playlist: {

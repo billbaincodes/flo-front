@@ -42,7 +42,7 @@ const AppNavigation = StackNavigator(
     todolist: toDoList
   },
   {
-    initialRouteName: "todolist",
+    initialRouteName: "loop",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },
