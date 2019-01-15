@@ -16,10 +16,10 @@
         </nb-form>
 
   <view class="buttons">
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMain">
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'rgb(180, 180, 180)'}" :on-press="navMain">
       <text class="text-color-primary">Log In</text>
     </touchable-opacity>
-        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMain">
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'rgb(180, 180, 180)'}" :on-press="navMain">
       <text class="text-color-primary">Sign Up</text>
     </touchable-opacity>
     </view>

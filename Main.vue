@@ -36,17 +36,17 @@
       <text class="text-color-primary">Speed 2</text>
     </touchable-opacity>-->
     <touchable-opacity :on-press="startRun" class="flo-button">
-      <text v-if="!run" class="text-color-primary">run</text>
+      <text v-if="!run" :style="{fontSize: 22, color: 'white'}" class="text-color-primary">run</text>
       <text v-else class="text-color-primary">stop</text>
     </touchable-opacity>
 
 
   <view class="buttons">
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
-      <text class="text-color-primary">Log In</text>
+    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'rgb(70, 70, 70)'}" :on-press="navProfile">
+      <text class="text-color-primary">Profile</text>
     </touchable-opacity>
-        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'white'}" :on-press="navMusic">
-      <text class="text-color-primary">Sign Up</text>
+        <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 40, width: 90, borderWidth: 1, borderColor: 'rgb(70, 70, 70)'}" :on-press="navMusic">
+      <text class="text-color-primary">Music</text>
     </touchable-opacity>
     </view>
 
@@ -144,31 +144,31 @@ export default {
       }, 5500);
       setTimeout(() => {
         this.speedDisplay = 1.3;
-      }, 14000);
+      }, 12000);
       setTimeout(() => {
         this.speedDisplay = 1.4;
-      }, 14020);
+      }, 12020);
       setTimeout(() => {
         this.speedDisplay = 1.8;
-      }, 14120);
+      }, 12120);
       setTimeout(() => {
         this.speedDisplay = 2;
-      }, 14500);
+      }, 12500);
       setTimeout(() => {
         this.speed = 2
-      }, 14500);
+      }, 12500);
         setTimeout(() => {
         this.speedDisplay = 2.5;
-      }, 22000);
+      }, 19000);
       setTimeout(() => {
         this.speedDisplay = 2.9;
-      }, 22200);
+      }, 19200);
       setTimeout(() => {
         this.speedDisplay = 3
-      }, 22500);
+      }, 19500);
       setTimeout(() => {
         this.speed = 3
-      }, 22500);
+      }, 19500);
     },
     speed0: function() {
       this.speed = 0;
@@ -302,11 +302,12 @@ export default {
   background-color: rgb(43, 43, 43);
   width: 200;
   height: 50;
-  border-radius: 50;
+  border-radius: 25;
   align-items: center;
   justify-content: center;
   border-width: 2;
   border-color: cyan;
+  /* background-color: cyan; */
   /* font-size: 30; */
 }
 

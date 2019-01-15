@@ -15,15 +15,15 @@
         <nb-form>
           <nb-item floatingLabel>
             <nb-label :style="{color: 'white'}">Title</nb-label>
-            <nb-input :style="{color: 'white'}"/>
+            <nb-input v-model="songTitle" :style="{color: 'white'}"/>
           </nb-item>
           <nb-item floatingLabel last>
             <nb-label :style="{color: 'white'}">Artist</nb-label>
-            <nb-input :style="{color: 'white'}"/>
+            <nb-input v-model="songArtist" :style="{color: 'white'}"/>
           </nb-item>
           <nb-item floatingLabel last>
             <nb-label :style="{color: 'white'}">URL</nb-label>
-            <nb-input :style="{color: 'white'}"/>
+            <nb-input v-model="songURL" :style="{color: 'white'}"/>
           </nb-item>
         </nb-form>
         <view class="cloud-container">
@@ -39,7 +39,16 @@
 </template>
 
 <script>
+import { Container, Header, Content, Text, Button, Toast } from "native-base";
+
 export default {
+  data: function() {
+    return {
+      songTitle: "",
+      songArtist: "",
+      songURL: ""
+    };
+  },
   props: {
     navigation: {
       type: Object
@@ -48,7 +57,24 @@ export default {
   methods: {
     submitSong: function() {
       console.log("song added");
-      this.navigation.goBack()
+      console.log(this.songTitle);
+      console.log(this.songArtist);
+      console.log(this.songURL);
+
+      fetch("https://flo-back.herokuapp.com/song", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({
+          title: this.songTitle,
+          artist: this.songArtist,
+          URL: this.songURL
+        })
+      })
+
+      this.$props.navigation.goBack()
+
     }
   }
 };

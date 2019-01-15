@@ -26,7 +26,6 @@
         </nb-list-item>
         <nb-list-item class="divider">
           <nb-text :style="{color: 'white'}">"Through the Fire and the Flames" - Dragonforce</nb-text>
-          <nb-text>-</nb-text>
         </nb-list-item>
       </nb-list>
     </nb-content>

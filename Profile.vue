@@ -13,10 +13,10 @@
     </view>
     <view class="blob"> 
       <text :style="{borderBottomWidth: 0, borderLeftWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">12</text>
-      <text :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">63</text>
+      <text :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">4</text>
       <text :style="{borderBottomWidth: 0, borderRightWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">3</text>
     </view>
-    <touchable-opacity class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100, borderWidth: 1, borderColor: 'white'}" >
+    <touchable-opacity :onPress="navEdit" class="login" :style="{backgroundColor: 'rgb(43, 43, 43)', height: 50, width: 100, borderWidth: 1, borderColor: 'white'}">
       <text :style="{fontSize: 18, color: 'white'}">Edit Profile</text>
     </touchable-opacity>
   </view>
@@ -37,8 +37,8 @@ export default {
     }
   },
   methods: {
-    navMusic: function() {
-      this.navigation.navigate("music");
+    navEdit: function() {
+      this.navigation.navigate("editProfile");
     }
   },
   async created() {

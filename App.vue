@@ -1,5 +1,5 @@
 <template>
-  <app-navigation class="app-nav"></app-navigation>
+    <app-navigation class="app-nav"></app-navigation>
 </template>
 
 <script>
@@ -22,6 +22,9 @@ import AddSong from "./AddSong.vue";
 import Loop from "./Loop.vue";
 // import Grow from "./Grow.vue"
 import Color from "./Color.vue"
+import EditProfile from "./EditProfile.vue"
+import toDoItem from "./toDoItem.vue"
+import toDoList from "./toDoList.vue"
 
 
 const AppNavigation = StackNavigator(
@@ -33,10 +36,13 @@ const AppNavigation = StackNavigator(
     main: Main,
     addsong: AddSong,
     loop: Loop,
-    color: Color
+    color: Color,
+    editProfile: EditProfile,
+    todoitem: toDoItem,
+    todolist: toDoList
   },
   {
-    initialRouteName: "splash",
+    initialRouteName: "todolist",
     cardStyle: {
       backgroundColor: "rgba(0,0,0,0)"
     },
