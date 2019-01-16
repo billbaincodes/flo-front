@@ -6,17 +6,30 @@
     />
     <text :style="{fontSize: 32, color: 'white'}">Donnie Denver</text>
     <text class="profile-text">donnie@gmail.com</text>
-    <view :style="{marginTop: 40}" class="blob"> 
+    <view :style="{marginTop: 40}" class="blob">
       <text :style="{borderTopWidth: 0, borderLeftWidth: 0}" class="profile-blob">Runs</text>
       <text :style="{borderTopWidth: 0}" class="profile-blob">Songs</text>
       <text :style="{borderTopWidth: 0, borderRightWidth: 0}" class="profile-blob">Playlists</text>
     </view>
-    <view class="blob"> 
-      <text :style="{borderBottomWidth: 0, borderLeftWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">17</text>
-      <text :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">9</text>
-      <text :style="{borderBottomWidth: 0, borderRightWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}" class="profile-blob">3</text>
+    <view class="blob">
+      <text
+        :style="{borderBottomWidth: 0, borderLeftWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}"
+        class="profile-blob"
+      >17</text>
+      <text
+        :style="{borderBottomWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}"
+        class="profile-blob"
+      >9</text>
+      <text
+        :style="{borderBottomWidth: 0, borderRightWidth: 0, paddingTop: 8, color: 'rgb(180, 180, 180)'}"
+        class="profile-blob"
+      >3</text>
     </view>
-    <touchable-opacity :onPress="navEdit" class="login" :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width:110}">
+    <touchable-opacity
+      :onPress="navEdit"
+      class="login"
+      :style="{backgroundColor: 'rgb(60, 60, 60)', height: 40, width:110}"
+    >
       <text :style="{fontSize: 18, color: 'white'}">Edit Profile</text>
     </touchable-opacity>
   </view>
@@ -40,22 +53,14 @@ export default {
     navEdit: function() {
       this.navigation.navigate("editProfile");
     }
-  },
-  async created() {
-    await Expo.Font.loadAsync({
-      Ionicons: require("./node_modules/@expo/vector-icons/fonts/Ionicons.ttf")
-    });
-
-    this.loaded = true;
   }
 };
 </script>
 
 <style>
 .blob {
-  display:flex;
+  display: flex;
   flex-direction: row;
-
 }
 .profile-blob {
   width: 100;

@@ -93,9 +93,6 @@ export default {
     this.bWidth = new Animated.Value(0);
   },
   mounted() {
-    console.log(this.$props);
-    
-
     // Simulate speed increase to trigger music
     // this.speedSimulator();
   },
@@ -192,7 +189,7 @@ export default {
 
       if (this.run === true) {
         //Growing animation
-        this.speed0
+        this.speed = 0
         this.speedSimulator();
 
         soundObject.playAsync();

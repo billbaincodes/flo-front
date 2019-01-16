@@ -56,12 +56,19 @@ export default {
       });
     },
     addSong: function() {
-      let songDetails = this.$data;
+      let songTitle = this.$data.title
+      let songArtist = this.$data.artist
+      let songURL = this.$data.URL
+      let payload = {
+        title: songTitle,
+        artist: songArtist,
+        URL: songURL
+      }
 
-      if (!songDetails.title || !songDetails.artist || !songDetails.URL) {
-        alert("bad info");
+      if (!payload.title || !payload.artist || !payload.URL) {
+        alert("Bogus info");
       } else {
-        this.addSongFetch(songDetails);
+        this.addSongFetch(payload);
         this.navigation.goBack();
       }
     },

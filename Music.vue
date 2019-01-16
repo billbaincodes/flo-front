@@ -13,7 +13,10 @@
           v-for="song in playlist.slo"
           :key="song.URL"
           :item="song"
-        ></song>
+        />
+        <view v-if="!loaded" :style="{flex: 1, justifyContent: 'center'}">
+          <activity-indicator size="large" color="cyan"/>
+        </view>
         <nb-list-item class="divider" :on-press="navMed" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Moderate</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
@@ -25,6 +28,9 @@
           :key="song.URL"
           :item="song"
         ></song>
+        <view v-if="!loaded" :style="{flex: 1, justifyContent: 'center'}">
+          <activity-indicator size="large" color="cyan"/>
+        </view>
         <nb-list-item class="divider" :on-press="navFast" itemDivider>
           <nb-text class="divider-text" :style="{color: 'cyan'}">Intense</nb-text>
           <image :style="{height: 18, width: 18}" :source="require('./assets/icon-menu.png')">
@@ -36,6 +42,9 @@
           :key="song.URL"
           :item="song"
         ></song>
+        <view v-if="!loaded" :style="{flex: 1, justifyContent: 'center'}">
+          <activity-indicator size="large" color="cyan"/>
+        </view>
       </nb-list>
     </nb-content>
   </nb-container>
@@ -49,7 +58,8 @@ export default {
   components: { song },
   data: function() {
     return {
-      playlist: { failure: "you" }
+      playlist: { failure: "you" },
+      loaded: false
     };
   },
   props: {
@@ -62,16 +72,15 @@ export default {
   },
   methods: {
     navSlo: function() {
-      this.navigation.navigate("addsong", {list: 'slo'});
+      this.navigation.navigate("addsong", { list: "slo" });
     },
     navMed: function() {
-      this.navigation.navigate("addsong", {list: 'med'});
+      this.navigation.navigate("addsong", { list: "med" });
     },
     navFast: function() {
-      this.navigation.navigate("addsong", {list: 'fast'});
+      this.navigation.navigate("addsong", { list: "fast" });
     },
     playlistFetch: function() {
-      console.log("mounted");
       fetch("https://flo-back.herokuapp.com/playlist/user/1")
         .then(function(response) {
           return response.json();

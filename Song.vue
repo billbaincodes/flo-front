@@ -14,9 +14,10 @@ export default {
   },
   methods: {
     deleteSong: function() {
+      const songTitle = this.$props.item.title
       Alert.alert(
         "Confirm",
-        "Delete song?",
+        `Delete ${songTitle}?`,
         [
           { text: "Cancel", onPress: () => console.log("Cancel Pressed") },
           { text: "OK", onPress: this.deleteSongFetch }
