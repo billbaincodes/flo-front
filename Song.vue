@@ -46,6 +46,9 @@ export default {
   display: flex;
   justify-content: space-between;
   background-color: rgb(43, 43, 43);
+  border-bottom-width: 1;
+  border-color: rgb(207, 207, 207);
+  margin-right: 14;
 }
 .song-text {
   color: white;

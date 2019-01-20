@@ -190,7 +190,6 @@ export default {
       if (this.run === true) {
         //Growing animation
         this.speed = 0
-        this.speedSimulator();
 
         soundObject.playAsync();
         this.growth.setValue(200);

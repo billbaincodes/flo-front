@@ -58,8 +58,88 @@ export default {
   components: { song },
   data: function() {
     return {
-      playlist: { failure: "you" },
-      loaded: false
+      playlist: {
+  "fast": [
+    {
+      artist: 'Megadeth',
+      title: 'Tornado of Souls',
+      "URL": "http://song.asdfawgfcom/born-to-run",
+      "fast": true,
+      "med": false,
+      "slo": false,
+    },
+    
+    {
+            artist: 'Skrillex',
+      title: 'First of the Year',
+      "URL": "http://soxzcbaewrng.com/too-fast-for-love",
+      "fast": true,
+      "med": false,
+      "slo": false,
+    },
+        {
+      artist: 'Metallica',
+      title: 'Master of Puppets',
+      "URL": "http://sonasdfasdfg.com/born-to-run",
+      "fast": true,
+      "med": false,
+      "slo": false,
+    },
+    ],
+    "med": [
+      {
+              artist: 'Bruce Springsteen',
+      title: 'Born to Run',
+        "URL": "http://dbsdfb.com/i-ran",
+        "fast": false,
+        "med": true,
+        "slo": false,
+      },
+      {
+              artist: 'A Flock of Seagulls',
+      title: 'I Ran',
+        "URL": "http://song.com/wertwert-with-the-devil",
+        "fast": false,
+        "med": true,
+        "slo": false,
+      },
+            {
+              artist: 'Van Halen',
+      title: 'Runnin\' with the Devil',
+        "URL": "http://wertwe.com/running-with-the-devil",
+        "fast": false,
+        "med": true,
+        "slo": false,
+      },
+    ],
+      slo: [
+        {
+                        artist: 'Hello',
+      title: 'Lionel Richie',
+          "URL": "awreg",
+          "fast": false,
+          "med": false,
+          "slo": true,
+        },
+        {
+                        artist: 'Only Time',
+      title: 'Enya',
+          "URL": "http://song.com/i-walkasdf asdf -the-line",
+          "fast": false,
+          "med": false,
+          "slo": true,
+        },
+                {
+                        artist: 'Hallelujah',
+      title: 'Jeff Buckley',
+          "URL": "http://song.comsdfg/i-walk-the-line",
+          "fast": false,
+          "med": false,
+          "slo": true,
+        },
+    ],
+  },
+      loaded: true
     };
   },
   props: {
