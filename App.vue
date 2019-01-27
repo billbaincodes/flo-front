@@ -20,7 +20,6 @@ import Main from "./Main.vue";
 import Profile from "./Profile.vue";
 import AddSong from "./AddSong.vue";
 import Loop from "./Loop.vue";
-// import Grow from "./Grow.vue"
 import Color from "./Color.vue";
 import EditProfile from "./EditProfile.vue";
 
